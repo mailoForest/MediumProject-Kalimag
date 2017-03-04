@@ -14,15 +14,15 @@ if (isset($_POST['submit'])){
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="../example/assets/css/reset.css" type="text/css" />
-		<link rel="stylesheet" href="../example/assets/css/style.css" type="text/css" />
+		<link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
+		<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 		<title>Нов акаунт</title>
 	</head>
 	
 	<body>
 		<main>
 			<section class="logo">
-				<a><img alt="" src="example/assets/images/logo.png"></a>
+				<a><img alt="" src="assets/images/logo.png"></a>
 			</section>
 			
 			<section class="form">
