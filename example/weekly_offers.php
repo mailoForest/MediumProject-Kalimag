@@ -13,7 +13,7 @@
 				<article><img alt="" src="assets/images/google-sign-in.png"/><br/><br/><br/><br/><br/><br/><br></article>
 			</section>
 			
-		</header>
+    </header>
 		<section class="weekly-offers-nav">
 			<nav>
 				<ul>
