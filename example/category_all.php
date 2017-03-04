@@ -17,25 +17,21 @@
 				<article>
 					<p><a href="#category-phone">Телефони, Таблети & Лаптопи</a></p>
 					<p><a href="#category-electro">Електроуреди</a></p>
-					<p><a href="">Книги & Офис консумативи</a></p>
 				</article>
 				
 				<article>
 					<p><a href="#category-computer">Компютри & Периферия</a></p>
-					<p><a href="">Мода</a></p>
-					<p><a href="">Играчки & Детски артикули</a></p>
+					<p><a href="">Книги & Офис консумативи</a></p>
 				</article>
 				
 				<article>
 					<p><a href="#category-tv">TV, Електроника & Gaming</a></p>
-					<p><a href="">Здраве и красота</a></p>
-					<p><a href="">Спорт & свободно време</a></p>
+					<p><a href="">Спорт & свободно време</a></p>					
 				</article>
 				
 				<article>
 					<p><a href="#category-foto&video">Фото, Bидео & Оптика</a></p>
 					<p><a href="">Дом, Градина & Petshop</a></p>
-					<p><a href="">Застраховки & Авто</a></p>
 				</article>
 			</section>
 			
