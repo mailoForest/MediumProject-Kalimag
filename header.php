@@ -9,15 +9,15 @@
 <div class="header">
     <div class="header_resize">
         <div class="logo">
-            <h1><a href="#"><span>kali</span>mag</a></h1>
+            <h1><a href="#"><span>KALI</span>mag</a></h1>
         </div>
         <div class="menu_nav">
             <ul>
-                <li class="active"><a href="index.php"><span>Home</span></a></li>
-                <li><a href="support.php"><span>Support</span></a></li>
-                <li><a href="about.php"><span>About Us</span></a></li>
-                <li><a href="blog.php"><span>Blog</span></a></li>
-                <li><a href="contact.php"><span>Contact Us</span></a></li>
+                <li id="index.php"><a href="index.php"><span>Home</span></a></li>
+                <li id="support.php"><a href="support.php"><span>Support</span></a></li>
+                <li id="about.php"><a href="about.php"><span>About Us</span></a></li>
+                <li id="blog.php"><a href="blog.php"><span>Blog</span></a></li>
+                <li id="contact.php"><a href="contact.php"><span>Contact Us</span></a></li>
             </ul>
             <div class="clr"></div>
         </div>

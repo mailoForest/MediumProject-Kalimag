@@ -6,21 +6,48 @@
  * Time: 17:09 ч.
  */
 ?>
-<div class="fbg">
-    <div class="fbg_resize">
-        <div class="col c1">
-            <h2><span>Image Gallery</span></h2>
-            <a href="#"><img src="../assets/images/gallery_1.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="../assets/images/gallery_2.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="../assets/images/gallery_3.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="../assets/images/gallery_4.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="../assets/images/gallery_5.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="../assets/images/gallery_6.jpg" width="58" height="58" alt="" /></a> </div>
-        <div class="col c2">
-            <h2><span>Lorem Ipsum</span></h2>
-            <p>Lorem ipsum dolor<br />
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#">Morbi tincidunt, orci ac convallis aliquam</a>, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam.</p>
-        </div>
-        <div class="col c3">
-            <h2><span>Contact</span></h2>
-            <p>Nullam quam lorem, tristique non vestibulum nec, consectetur in risus. Aliquam a quam vel leo gravida gravida eu porttitor dui. Nulla pharetra, mauris vitae interdum dignissim, justo nunc suscipit ipsum. <a href="#">mail@example.com</a><br />
-                <a href="#">+1 (123) 444-5677</a></p>
-        </div>
-        <div class="clr"></div>
-    </div>
-</div>
+<footer>
+    <section class="fbg">
+        <section class="fbg_resize">
+            <article>
+                <h2>Услуги</h2>
+                <p><a href="">Проверка на пратката</a></p>
+                <p><a href="">30 дни право на връщане</a></p>
+                <p><a href="">Гаранция и сервиз</a></p>
+                <p><a href="">Плащане на вноски</a></p>
+            </article>
+
+            <article class="middle">
+                <h2>Поръчки и доставка</h2>
+                <p><a href="">Моят акаунт</a></p>
+                <p><a href="">Как да поръчам онлайн</a></p>
+                <p><a href="">Доставка на поръчките</a></p>
+                <p><a href="">Често задавани въпроси</a></p>
+            </article>
+
+            <article class="middle">
+                <h2>Връзка с нас</h2>
+                <p><a href="">Контакт</a></p>
+                <p><a href="">Формуляр поправка на продукт</a></p>
+                <p><a href="">Формуляр връщане на продукт</a></p>
+                <p><a href="">Формуляр рекламации и жалби</a></p>
+            </article>
+
+            <article class="middle">
+                <h2>KALImag.bg</h2>
+                <p><a href="">За връзка с нас</a></p>
+                <p><a href="">Условия за ползване</a></p>
+                <p><a href="">Лични данни</a></p>
+                <p><a href="">Платформа за ОРС</a></p>
+            </article>
+
+            <article class="middle">
+                <h2>Научи повече</h2>
+                <p><a href="">KALImag Кариера</a></p>
+                <p><a href="">Блог</a></p>
+                <p><a href="">Афилиейт програма</a></p>
+                <p><a href="">KALImag Marketplace</a></p>
+            </article>
+        </section>
+    </section>
+</footer>

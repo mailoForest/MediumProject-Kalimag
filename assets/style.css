@@ -298,15 +298,17 @@ ul.ex_menu li a:hover {
 	float:left;
 }
 .fbg {
+	display: flex;
 	padding:10px 0 0 0;
 	border-top:1px solid #5e5f62;
 	background:#e7e9eb url(images/fbg_bg.gif) top repeat-x;
-	margin:10px 0 0 0;
+	margin:0px auto;
 }
 .fbg_resize {
 	margin:0 auto;
-	padding:20px 20px;
+	padding:10px 0 0 0;
 	width:930px;
+	display: inline-block;
 }
 .fbg h2 {
 	color:#dedddd;
@@ -323,28 +325,15 @@ ul.ex_menu li a:hover {
 	border:1px solid #cfd2d4;
 	background-color:#fff;
 }
-.fbg .col {
-	margin:0;
-	float:left;
+.fbg article{
+	float: left;
+	width: 17.5%;
+	height: 93%;
 }
-.fbg .c1 {
-	padding:0 16px 0 0;
-	width:266px;
-}
-.fbg .c2 {
-	padding:0 16px;
-	width:300px;
-}
-.fbg .c3 {
-	padding:0 0 0 16px;
-	width:260px;
-}
-.fbg .c1 img {
-	margin:8px;
-}
-.fbg .c3 img {
-	margin:8px 16px 4px 0;
-	float:left;
+.middle{
+	border-left:1px solid #e7e9eb;
+	padding-left: 3%;
+
 }
 .footer {
 	width:970px;
