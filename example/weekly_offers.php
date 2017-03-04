@@ -2,15 +2,15 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="../example/assets/css/reset.css" type="text/css" />
-		<link rel="stylesheet" href="../example/assets/css/style.css" type="text/css" />
+		<link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
+		<link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 		<title>Всички категории</title>
 	</head>
 	
 	<body>
 	<header>
 			<section class="logo">
-				<article><img alt="" src="../example/assets/images/google-sign-in.png"/><br/><br/><br/><br/><br/><br/><br></article>
+				<article><img alt="" src="assets/images/google-sign-in.png"/><br/><br/><br/><br/><br/><br/><br></article>
 			</section>
 			
 		</header>
@@ -26,7 +26,7 @@
 		</section>
 		<main class="main-weekly-offers">
 			<article class="carousel">
-				<img alt="" src="../example/assets/images/header.jpg"/>
+				<img alt="" src="assets/images/header.jpg"/>
 			</article>
 			<hr/>
 			<section class="offers">
