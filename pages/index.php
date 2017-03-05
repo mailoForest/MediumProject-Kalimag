@@ -282,7 +282,7 @@
           <?php include '../aside.php'?>
       </div>
       <div class="clr"></div>
-    </div>
+   </div>
   </div>
     <?php include '../footer.php'?>
     <script>
