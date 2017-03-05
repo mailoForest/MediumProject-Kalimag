@@ -7,7 +7,7 @@
 <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
 <link href="../assets/css/ali-style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../assets/js/cufon-yui.js"></script>
-<!--<script type="text/javascript" src="../assets/js/arial.js"></script>-->
+<script type="text/javascript" src="../assets/js/arial.js"></script>
 <script type="text/javascript" src="../assets/js/cuf_run.js"></script>
 </head>
 <body>
@@ -19,7 +19,7 @@
       <div class="mainbar">
           <main class="main-subscribe">
           	<section class="subscribe">
-          		<h2>Абонирай се за бюлетина на eMAG, за да си информиран за нашите нови предложения и оферти!</h2>
+          		<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
           		
           		<form>
           		<fieldset>
@@ -57,7 +57,7 @@
         function setClassActive(id) {
             document.getElementById(id).setAttribute('class', 'active');
         }
-        setClassActive('index.php');
+        setClassActive('subscribe.php');
     </script>
 </div>
 </body>
