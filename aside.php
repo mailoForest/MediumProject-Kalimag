@@ -19,7 +19,7 @@
         <li><a href="#">СПОРТ & СВОБОДНО ВРЕМЕ</a></li>
         <li><a href="#">ДОМ, ГРАДИНА & PETSHOP</a></li>
         <li><a href="#">РАЗОПАКОВАНИ ПРОДУКТИ</a></li>
-        <li><a href="#">ВСИЧКИ КАТЕГОРИИ</a></li>
+        <li><a href="allCategories.php">ВСИЧКИ КАТЕГОРИИ</a></li>
     </ul>
 </div>
 <!--<div class="gadget">-->
