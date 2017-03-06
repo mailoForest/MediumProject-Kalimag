@@ -1,4 +1,23 @@
-
+<?php 
+$chekPass = '';
+	if (isset($_POST['submit'])){
+		$email = trim($_POST['mail']);
+		if ($email!==''){
+			$link_kalimag = mysqli_connect("localhost", "root", "");
+			mysqli_select_db($link_kalimag, "kalimag");
+			$result = mysqli_query($link_kalimag, "select * from users");
+			while ($users = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+				
+				if ($users['Email'] === $email){
+					$chekUser=false;
+					$chekPass='Вече има регистриран потребител с този имейл';
+					break;
+				}else header('Location: Registration.php', true, 302);
+			}
+		}
+		
+	}
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,6 +38,7 @@
 					<h1>Здравейте!</h1>
 					<p><strong>Моля въведете имейл адрес</strong></p>
 					<input type="text" name="mail">
+					<h3><?php echo $chekPass ?></h3>
 					<input type="submit" name="submit" Value="Продължи">
 					<p>Нямаш акаунт? Не се притеснявай! 
 						Попълни имейл адреса, с който желаеш да се регистрираш.</p>
