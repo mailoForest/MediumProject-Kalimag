@@ -6,6 +6,7 @@
  * Time: 17:00 ч.
  */
 ?>
+<a href="" id="anchor"></a>
 <div class="header">
     <div class="header_resize">
         <div class="logo">
@@ -27,3 +28,4 @@
         </div>
     </div>
 </div>
+<a href="#anchor" id="goTop"><img src="../assets/images/arrow-up.png" width="50px" alt=""></a>
