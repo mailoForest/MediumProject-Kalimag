@@ -3,7 +3,9 @@
 <head>
 <title>KALImag | About</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/ali-style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../assets/js/cufon-yui.js"></script>
 <script type="text/javascript" src="../assets/js/arial.js"></script>
 <script type="text/javascript" src="../assets/js/cuf_run.js"></script>
@@ -45,10 +47,8 @@
     </div>
   </div>
     <?php include '../footer.php'?>
-    <script>
-        function setClassActive(id) {
-            document.getElementById(id).setAttribute('class', 'active');
-        }
+    <script type="text/javascript" src="../assets/js/script.js"></script>
+    <script type="text/javascript">
         setClassActive('info.php')
     </script>
 </div>
