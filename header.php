@@ -6,6 +6,10 @@
  * Time: 17:00 ч.
  */
 ?>
+<?php
+    include '../login.php';
+    include '../register.php';
+?>
 <a href="" id="anchor"></a>
 <div class="header">
     <div class="header_resize">
@@ -24,8 +28,8 @@
             <div id="account-bar" onmouseover="showAccountBar()" onmouseout="hideAccountBar()">
                 <div id="connect"></div>
                 <p>Не сте в акаунта си!
-                    <span class="account-log">Впишете се</span> или се
-                    <span class="account-log">регистрирайте</span>.</p>
+                    <span class="account-log" onclick="showLoginBar()">Впишете се</span> или се
+                    <span class="account-log" onclick="showRegisterBar()">регистрирайте</span>.</p>
             </div>
         </div>
         <div class="clr"></div>
@@ -35,3 +39,4 @@
     </div>
 </div>
 <a href="#anchor" id="goTop"><img src="../assets/images/arrow-up.png" width="50px" alt=""></a>
+

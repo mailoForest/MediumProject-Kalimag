@@ -17,3 +17,13 @@ function showAccountBar() {
 function hideAccountBar() {
     document.getElementById('account-bar').style.visibility = 'hidden';
 }
+function showLoginBar() {
+    document.getElementById('login-wrapper').style.visibility = 'visible';
+}
+function showRegisterBar() {
+    document.getElementById('register-wrapper').style.visibility = 'visible';
+}
+function hideLogBar() {
+    document.getElementById('login-wrapper').style.visibility = 'hidden';
+    document.getElementById('register-wrapper').style.visibility = 'hidden';
+}

@@ -2,11 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>KALImag | Blog</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="../assets/js/cufon-yui.js"></script>
-<script type="text/javascript" src="../assets/js/arial.js"></script>
-<script type="text/javascript" src="../assets/js/cuf_run.js"></script>
+<?php include '../head-links.php'?>
 </head>
 <body>
 <div class="main">

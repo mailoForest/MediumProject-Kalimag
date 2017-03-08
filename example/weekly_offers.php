@@ -10,7 +10,7 @@
 	<body>
 	<header>
 			<section class="logo">
-				<article><img alt="" src="assets/images/google-sign-in.png"/><br/><br/><br/><br/><br/><br/><br></article>
+				<article><img alt="" src="../assets/images/google-sign-in.png"/><br/><br/><br/><br/><br/><br/><br></article>
 			</section>
 			
     </header>
