@@ -87,12 +87,10 @@
     </div>
   </div>
     <?php include '../footer.php'?>
-    <script>
-        function setClassActive(id) {
-            document.getElementById(id).setAttribute('class', 'active');
-        }
-        setClassActive('account.php');
-    </script>
 </div>
+<script type="text/javascript" src="../assets/js/script.js"></script>
+<script type="text/javascript">
+    setClassActive('account.php');
+</script>
 </body>
 </html>

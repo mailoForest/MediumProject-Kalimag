@@ -285,18 +285,9 @@
    </div>
   </div>
     <?php include '../footer.php'?>
-    <script>
-        function setClassActive(id) {
-            document.getElementById(id).setAttribute('class', 'active');
-        }
+    <script type="text/javascript" src="../assets/js/script.js"></script>
+    <script  type="text/javascript">
         setClassActive('index.php');
-        function showGoTop() {
-            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-                document.getElementById('goTop').style.visibility = "visible";
-            } else {
-                document.getElementById('goTop').style.visibility = "hidden";
-            }
-        }
         window.onscroll = function(){showGoTop()};
     </script>
 </div>
