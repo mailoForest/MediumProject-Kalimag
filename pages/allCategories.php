@@ -966,5 +966,8 @@
     <?php include '../footer.php'?>
 </div>
 <script type="text/javascript" src="../assets/js/script.js"></script>
+<script  type="text/javascript">
+    window.onscroll = function(){showGoTop()};
+</script>
 </body>
 </html>
