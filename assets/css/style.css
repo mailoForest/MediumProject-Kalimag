@@ -383,3 +383,9 @@ ol li textarea {
 ol li .send {
 	margin:16px 0 0 0;
 }
+#goTop{
+	position: fixed;
+	bottom: 3%;
+	right: 5%;
+	visibility: hidden;
+}
