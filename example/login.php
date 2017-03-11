@@ -1,21 +1,22 @@
 <?php 
-$chekPass = '';
+$chek = '';
 	if (isset($_POST['submit'])){
-		$email = trim($_POST['mail']);
-		if ($email!==''){
+		$email = trim($_POST['email']);
+		$password = trim($_POST['password']);
+		if ($email!=='' && $password!==''){
 			$link_kalimag = mysqli_connect("localhost", "root", "");
 			mysqli_select_db($link_kalimag, "kalimag");
-			$result = mysqli_query($link_kalimag, "select * from users");
-			while ($users = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+			$result = mysqli_query($link_kalimag, "select * from users WHERE (Email = '$email') AND (Password = '$password')");
+			$users = mysqli_fetch_array($result,MYSQLI_ASSOC);
+			if ($users){
+				session_start();
 				
-				if ($users['Email'] === $email){
-					$chekUser=false;
-					$chekPass='Вече има регистриран потребител с този имейл';
-					break;
-				}else header('Location: Registration.php', true, 302);
-			}
+				$_SESSION['ID'] = $users['ID'];
+				$_SESSION['name'] = $users['Name'];
+					
+				header('Location: ../pages/index.php', true, 302);
+			}else $chek = 'Невалиден имейл или парола';
 		}
-		
 	}
 ?>
 <!DOCTYPE html>
@@ -30,18 +31,24 @@ $chekPass = '';
 	<body>
 		<main>
 			<section class="logo">
-				<a><img alt="" src="assets/images/logo.png"></a>
+				<a><img alt="" src="../assets/images/gallery_5.jpg"></a>
 			</section>
 			
 			<section class="form">
-				<form action="" method="post">
+				<form action="<?php $_SERVER['PHP_SELF']?>" method="post">
 					<h1>Здравейте!</h1>
-					<p><strong>Моля въведете имейл адрес</strong></p>
-					<input type="text" name="mail">
-					<h3><?php echo $chekPass ?></h3>
+					<p><strong>Моля въведете</strong></p>
+					<div id="mail">
+					<input type="text" placeholder="имейл адрес" name="email" id="email">
+					</div>
+					<div id="password">
+					<input type="password" placeholder="парола" name="password" id="password">
+					</div>
+					<figure>
+						<figcaption><?php echo $chek?></figcaption>
+					</figure>
 					<input type="submit" name="submit" Value="Продължи">
-					<p>Нямаш акаунт? Не се притеснявай! 
-						Попълни имейл адреса, с който желаеш да се регистрираш.</p>
+					<p>Нямаш акаунт? <a href="Registration.php">Регистрирай се</a></p>
 					
 					<table>
 						<tr>
@@ -67,7 +74,8 @@ $chekPass = '';
 				</article>
 					<hr/>
 			</section>
-		</main>	
+		</main>
+		<script type="text/javascript" src="../assets/js/script.js"></script>
 	</body>
 </html>
 

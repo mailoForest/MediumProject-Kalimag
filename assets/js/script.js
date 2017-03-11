@@ -4,3 +4,108 @@
 function setClassActive(id) {
     document.getElementById(id).setAttribute('class', 'active');
 }
+
+var emailField = document.getElementById('email');
+var password = document.getElementById('password');
+var repeatPass = document.getElementById('repeatPass');
+var hasErrors = true;
+
+function isValidEmail(username) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(username);
+}
+function login(){
+emailField.onblur = function() {
+	if (isValidEmail(emailField.value)){ 
+	    hasErrors = false;
+		emailField.style.border = "1.5px solid green";
+		emailField.style.borderRadius = "5px"
+	}
+	else
+		{
+		var errorContainer = document.getElementById("mail");
+		var errorMessage = document.createElement('span');
+		errorMessage.className = 'error';
+		errorMessage.textContent = 'Невалиден имейл';
+		errorMessage.style.color = 'red';
+		errorContainer.appendChild(errorMessage);
+		emailField.style.border = "1.5px solid red";
+		hasErrors = true;
+	}
+}
+
+emailField.onfocus = function() {
+	var errorMessage = document.querySelector("#mail > .error");
+	if (errorMessage) {
+		errorMessage.parentNode.removeChild(errorMessage);
+		emailField.style.border = "none";
+		hasErrors = false;
+	}
+};
+}
+	
+function registration(){
+repeatPass.onblur = function() {
+	if (password.value !== repeatPass.value){
+		hasErrors = false;
+		var errorContainer = document.getElementById("regPassword");
+		var errorMessage = document.createElement('span');
+		errorMessage.className = 'error';
+		errorMessage.textContent = 'Паролите не съвпадат';
+		errorMessage.style.color = 'red';
+		errorContainer.appendChild(errorMessage);
+		repeatPass.style.border = "1.5px solid red";
+		hasErrors = true;
+	}
+	
+}
+
+emailField.onblur = function() {
+	var email = $('#email').val();
+	$.post('http://localhost/MediumProject-Kalimag/example/check.php',{ email: email }, 
+			function(data){
+		if (data == 1) {
+			var container = document.getElementById("emails");
+			var errorMessage = document.createElement('span');
+			errorMessage.className = 'error';
+			errorMessage.textContent = 'Вече има регистриран потребител с този имейл';
+			container.appendChild(errorMessage);
+			hasErrors = true;
+		} else {
+			emailField.style.border = "1.5px solid green";
+			hasErrors = false;
+		}
+	});
+};
+emailField.onfocus = function() {
+	var errorMessage = document.querySelector("#emails > .error");
+	if (errorMessage) {
+		errorMessage.parentNode.removeChild(errorMessage);
+		repeatPass.style.border = "1.5px solid green";
+		hasErrors = false;
+	}
+};
+
+repeatPass.onfocus = function() {
+	var errorMessage = document.querySelector("#regPassword > .error");
+	if (errorMessage) {
+		errorMessage.parentNode.removeChild(errorMessage);
+		repeatPass.style.border = "1.5px solid green";
+		hasErrors = false;
+	}
+};
+}
+
+
+if (emailField){
+	login();
+}
+
+if (password){
+	registration();
+}
+document.forms[0].onsubmit = function(event) {
+	if (hasErrors) {
+		event.preventDefault();
+	}
+}

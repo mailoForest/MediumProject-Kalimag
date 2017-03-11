@@ -57,6 +57,10 @@ input {
 	font-weight: bold;
 	margin: 0.7em 0 0.7em 0;
 }
+.error {
+	font-size: 0.8em;
+	color:red;
+}
 .form h1{
 	font-size: 2em;
 	color:	#A9A9A9;
