@@ -11,11 +11,28 @@ function showGoTop() {
 function setClassActive(id) {
     document.getElementById(id).setAttribute('class', 'active');
 }
-<<<<<<< HEAD
+
+function showAccountBar() {
+    document.getElementById('account-bar').style.visibility = 'visible';
+}
+function hideAccountBar() {
+    document.getElementById('account-bar').style.visibility = 'hidden';
+}
+function showLoginBar() {
+    document.getElementById('login-wrapper').style.visibility = 'visible';
+}
+function showRegisterBar() {
+    document.getElementById('register-wrapper').style.visibility = 'visible';
+}
+function hideLogBar() {
+    document.getElementById('login-wrapper').style.visibility = 'hidden';
+    document.getElementById('register-wrapper').style.visibility = 'hidden';
+}
 
 var emailField = document.getElementById('email');
-var password = document.getElementById('password');
-var repeatPass = document.getElementById('repeatPass');
+var newMail = document.getElementById('reg-email');
+var password = document.getElementById('reg-password');
+var repeatPass = document.getElementById('repeat-pass');
 var hasErrors = true;
 
 function isValidEmail(username) {
@@ -25,9 +42,23 @@ function isValidEmail(username) {
 function login(){
 emailField.onblur = function() {
 	if (isValidEmail(emailField.value)){ 
-	    hasErrors = false;
-		emailField.style.border = "1.5px solid green";
-		emailField.style.borderRadius = "5px"
+		var email = $('#email').val();
+		$.post('http://localhost/MediumProject-Kalimag/example/check.php',{ email: email }, 
+				function(data){
+			if (data == 0) {
+				var container = document.getElementById("mail");
+				var errorMessage = document.createElement('span');
+				errorMessage.className = 'error';
+				errorMessage.textContent = 'Няма регистриран потребител с този имейл';
+				emailField.style.border = "2px solid red";
+				container.appendChild(errorMessage);
+				hasErrors = true;
+			}else{
+			    hasErrors = false;
+				emailField.style.border = "2px solid green";
+				emailField.style.borderRadius = "5px"
+			}
+		});
 	}
 	else
 		{
@@ -37,7 +68,7 @@ emailField.onblur = function() {
 		errorMessage.textContent = 'Невалиден имейл';
 		errorMessage.style.color = 'red';
 		errorContainer.appendChild(errorMessage);
-		emailField.style.border = "1.5px solid red";
+		emailField.style.border = "2px solid red";
 		hasErrors = true;
 	}
 }
@@ -55,21 +86,22 @@ emailField.onfocus = function() {
 function registration(){
 repeatPass.onblur = function() {
 	if (password.value !== repeatPass.value){
-		hasErrors = false;
+		hasErrors = true;
 		var errorContainer = document.getElementById("regPassword");
 		var errorMessage = document.createElement('span');
 		errorMessage.className = 'error';
 		errorMessage.textContent = 'Паролите не съвпадат';
 		errorMessage.style.color = 'red';
 		errorContainer.appendChild(errorMessage);
-		repeatPass.style.border = "1.5px solid red";
-		hasErrors = true;
+		repeatPass.style.border = "2px solid red";
 	}
 	
 }
 
-emailField.onblur = function() {
-	var email = $('#email').val();
+newMail.onblur = function() {
+	if (isValidEmail(newMail.value)){ 
+
+	var email = $('#reg-email').val();
 	$.post('http://localhost/MediumProject-Kalimag/example/check.php',{ email: email }, 
 			function(data){
 		if (data == 1) {
@@ -80,16 +112,27 @@ emailField.onblur = function() {
 			container.appendChild(errorMessage);
 			hasErrors = true;
 		} else {
-			emailField.style.border = "1.5px solid green";
+			newMail.style.border = "2px solid green";
 			hasErrors = false;
 		}
 	});
+	}
+	else
+	{
+	var errorContainer = document.getElementById("emails");
+	var errorMessage = document.createElement('span');
+	errorMessage.className = 'error';
+	errorMessage.textContent = 'Невалиден имейл';
+	errorMessage.style.color = 'red';
+	errorContainer.appendChild(errorMessage);
+	newMail.style.border = "2px solid red";
+	hasErrors = true;
+}
 };
-emailField.onfocus = function() {
+newMail.onfocus = function() {
 	var errorMessage = document.querySelector("#emails > .error");
 	if (errorMessage) {
 		errorMessage.parentNode.removeChild(errorMessage);
-		repeatPass.style.border = "1.5px solid green";
 		hasErrors = false;
 	}
 };
@@ -98,13 +141,11 @@ repeatPass.onfocus = function() {
 	var errorMessage = document.querySelector("#regPassword > .error");
 	if (errorMessage) {
 		errorMessage.parentNode.removeChild(errorMessage);
-		repeatPass.style.border = "1.5px solid green";
+		repeatPass.style.border = "2px solid green";
 		hasErrors = false;
 	}
 };
 }
-
-
 if (emailField){
 	login();
 }
@@ -116,21 +157,4 @@ document.forms[0].onsubmit = function(event) {
 	if (hasErrors) {
 		event.preventDefault();
 	}
-=======
-function showAccountBar() {
-    document.getElementById('account-bar').style.visibility = 'visible';
-}
-function hideAccountBar() {
-    document.getElementById('account-bar').style.visibility = 'hidden';
-}
-function showLoginBar() {
-    document.getElementById('login-wrapper').style.visibility = 'visible';
-}
-function showRegisterBar() {
-    document.getElementById('register-wrapper').style.visibility = 'visible';
-}
-function hideLogBar() {
-    document.getElementById('login-wrapper').style.visibility = 'hidden';
-    document.getElementById('register-wrapper').style.visibility = 'hidden';
->>>>>>> e06bb7b479f3ff859301a7a57e32cae349d56600
 }

@@ -34,30 +34,29 @@
 	</head>
 	
 	<body>
-		<main>
+		<main id="reg-form">
 			<section class="logo">
 				<a><img alt="" src="assets/images/logo.png"></a>
 			</section>
 			
 			<section class="form">
 				<a href="./login.php" id="back">&lt Назад</a>
-				<form action="" method="post">
+				<form action="" method="post" id="form">
 					<h1>Добре дошли!</h1>
 					<h2>Изглежда нямате акаунт в KALImag.</h2><h2> Нека да Ви направим!</h2><br/>
 					<div id='emails'>
-					<label>Попълнете имейл адрес</label>
-					<input type="text" name="email" id="email"/>
+						<label>Попълнете имейл адрес</label>
+						<input type="text" name="email" id="reg-email"/>
 					</div>
 					<div id="regPassword"> 
-					<label>Изберете сигурна парола</label>
-					<input type="password" name="password" id="password"/>
-					<label>Потвърждаване на парола</label>
-					<input type="password" name="repeatPass" id="repeatPass"/>
+						<label>Изберете сигурна парола</label>
+						<input type="password" name="reg-password" id="reg-password"/>
+						<label>Потвърждаване на парола</label>
+						<input type="password" name="repeatPass" id="repeat-pass"/>
 					</div>
 					<input type="submit" name="submit" Value="Продължи"/>
 					<h6><input type="checkbox" id="agree" name="agree" value="yes">Прочетох и съм съгласен с <a href="">Условията за ползване</a></h6>
-					<h6><input type="checkbox" name="agre" value="yes"/>Искам да бъда винаги запознат с най-актуалните оферти</h6>
-					
+					<h6><input type="checkbox" name="agre" value="yes"/>Искам да бъда винаги запознат с най-актуалните оферти</h6>			
 				</form>
 				
 			</section>

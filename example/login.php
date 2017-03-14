@@ -11,20 +11,11 @@ $chek = '';
 			if ($users){
 				session_start();
 				
-<<<<<<< HEAD
 				$_SESSION['ID'] = $users['ID'];
 				$_SESSION['name'] = $users['Name'];
 					
 				header('Location: ../pages/index.php', true, 302);
 			}else $chek = 'Невалиден имейл или парола';
-=======
-				if ($users['Email'] === $email){
-					$chekUser=false;
-					$chekPass='Вече има регистриран потребител с този имейл';
-					break;
-				}else header('Location: register.php', true, 302);
-			}
->>>>>>> e06bb7b479f3ff859301a7a57e32cae349d56600
 		}
 	}
 ?>
@@ -38,7 +29,7 @@ $chek = '';
 	</head>
 	
 	<body>
-		<main>
+		<main id = "log-form">
 			<section class="logo">
 				<a><img alt="" src="../assets/images/gallery_5.jpg"></a>
 			</section>
