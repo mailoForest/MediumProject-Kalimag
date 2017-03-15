@@ -9,12 +9,12 @@ if (isset($_POST['login'])){
 		$result = mysqli_query($link_kalimag, "select * from users WHERE (Email = '$email') AND (Password = '$password')");
 		$users = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		if ($users){
-			session_start();
-			echo "asdsad";
 			$_SESSION['ID'] = $users['ID'];
 			$_SESSION['name'] = $users['Name'];
+			$_SESSION['surname'] = $users['Surname'];
+			$_SESSION['email'] = $users['Email'];
+			$_SESSION['phone'] = $users['Phone'];
 				
-//			header('Location: ../pages/index.php', true, 302);
 		}else $chek = 'Невалиден имейл или парола';
 	}
 }

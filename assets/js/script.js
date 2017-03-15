@@ -43,7 +43,7 @@ function login(){
 emailField.onblur = function() {
 	if (isValidEmail(emailField.value)){ 
 		var email = $('#email').val();
-		$.post('http://localhost/MediumProject-Kalimag/example/check.php',{ email: email }, 
+		$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
 				function(data){
 			if (data == 0) {
 				var container = document.getElementById("mail");
@@ -94,6 +94,9 @@ repeatPass.onblur = function() {
 		errorMessage.style.color = 'red';
 		errorContainer.appendChild(errorMessage);
 		repeatPass.style.border = "2px solid red";
+	} else {
+		repeatPass.style.border = "2px solid green";
+		hasErrors = false;
 	}
 	
 }
@@ -102,13 +105,14 @@ newMail.onblur = function() {
 	if (isValidEmail(newMail.value)){ 
 
 	var email = $('#reg-email').val();
-	$.post('http://localhost/MediumProject-Kalimag/example/check.php',{ email: email }, 
+	$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
 			function(data){
 		if (data == 1) {
 			var container = document.getElementById("emails");
 			var errorMessage = document.createElement('span');
 			errorMessage.className = 'error';
 			errorMessage.textContent = 'Вече има регистриран потребител с този имейл';
+			newMail.style.border = "2px solid red";
 			container.appendChild(errorMessage);
 			hasErrors = true;
 		} else {
@@ -154,6 +158,11 @@ if (password){
 	registration();
 }
 document.forms[0].onsubmit = function(event) {
+	if (hasErrors) {
+		event.preventDefault();
+	}
+}
+document.forms[1].onsubmit = function(event) {
 	if (hasErrors) {
 		event.preventDefault();
 	}

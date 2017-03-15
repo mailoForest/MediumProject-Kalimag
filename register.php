@@ -1,27 +1,26 @@
 <?php 
-// $chek='';
-// $chekPass='';
-// if (isset($_POST['submit'])){
-// 	$name = trim($_POST['name']);
-// 	$password = trim($_POST['password']);
-// 	$passChek = trim($_POST['chekPassword']);
-// 	if ($name !=='' && $password !=='' && $passChek !==''){
-// 		if (strcmp($password, $passChek)===0){
-// 			$link_kalimag = mysqli_connect("localhost", "root", "");
-// 			mysqli_select_db($link_kalimag, "kalimag");
+$chek='';
+$chekPass='';
+if (isset($_POST['submit'])){
+	$email = trim($_POST['email']);
+	$password = trim($_POST['reg-password']);
+	$passChek = trim($_POST['repeatPass']);
+	if ($email !=='' && $password !=='' && $passChek !==''){
+		if (strcmp($password, $passChek)===0){
+			$link_kalimag = mysqli_connect("localhost", "root", "");
+			mysqli_select_db($link_kalimag, "kalimag");
 
-// 			mysqli_query($link_kalimag, "insert into users value(0, '$name', '$password', '$email')");
-// 			mysqli_close($link_kalimag);
-// 			session_start();
+			mysqli_query($link_kalimag, "insert into users value(0,'$email', '','', '$password','')");
+			mysqli_close($link_kalimag);
+			session_start();
 				
-// 			$_SESSION['username'] = $name;
-// 			$_SESSION['pass'] = $password;
-// 			$_SESSION['Email'] = $mail;
+			$_SESSION['pass'] = $password;
+			$_SESSION['Email'] = $mail;
 			
-// 			header('Location: ../pages/index.php', true, 302);
-// 		}else $chekPass = 'Паролите не съвпадат';
-// 	}else $chek = 'задължително поле';;
-// }
+			header('Location: ../pages/index.php', true, 302);
+		}else $chekPass = 'Паролите не съвпадат';
+	}else $chek = 'задължително поле';;
+}
 ?>
 
 <div id="register-wrapper">

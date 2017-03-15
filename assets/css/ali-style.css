@@ -451,11 +451,105 @@ body{
 	visibility: hidden;
 }
 .log-window{
-	margin: 2em auto 0 auto;
+	margin: 1.5em auto 0 auto;
 }
 .fa-times-pos {
 	text-align: right;
 }
 .fa-times{
 	cursor: pointer;
+}
+
+.content-acount{
+	width: 70%;
+	height: 600px;
+	margin: 2em auto;
+	background-color: #6495ED;
+}
+
+.content-acount .sidebar{
+	float: left;
+	padding: 0.8em;
+	width: 25%;
+	color: green;
+	box-sizing: border-box;
+	background-color: white;
+	height: 600px;
+	line-height: 2em;
+}
+.content-acount .sidebar ul li:HOVER{
+	width: 106%;
+	cursor: pointer;
+	background-color: #4169E1;
+	color: white;
+}
+
+.content-acount .article{
+	width: 75%;
+	float: right;
+	box-sizing: border-box;
+	padding: 1em;
+	color: black;
+}
+
+.content-acount form {
+	background-color: white;
+	padding: 1em;
+	display: inline-block;
+	width: 100%;
+	box-sizing: border-box;
+	line-height: 1.8em;
+}
+.article h3 {
+	margin: 1em 0;
+	font-size: 1.3em;
+}
+#img {
+	float: left;
+	width: 20%;
+	height: 300px;
+}
+#data label{
+	display:inline-block;
+	width: 15%;
+}
+#data input[type=text] {
+	padding: 0.7em;
+	width: 60%;
+	margin-bottom: 1em;
+	border-radius: 3%;
+}
+#data input[type=submit]{
+	padding: 0.3em;
+	font-size: 1.1em;
+	background: #4169E1;
+	color: white;
+	border-radius: 3%;
+}
+
+#change-email, #change-pass{
+	text-align: right;
+	color: #4169E1;
+}
+#change-email:HOVER, #change-pass:HOVER {
+	cursor: pointer;
+}
+#new-email label, #new-pass label{
+	display: inline-block;
+	width: 26%;
+}
+#new-email, #new-pass, #security{
+	display: none;
+}
+#security form{
+	margin-bottom: 2em;
+}
+#security a{
+	text-decoration: none;
+	margin-right: 0.5em;
+}
+
+#security form a:HOVER{
+	cursor: pointer;
+	color: green;
 }

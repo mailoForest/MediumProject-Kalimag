@@ -4,15 +4,9 @@ if (isset($_POST['email'])){
 	if ($email!==''){
 		$link_kalimag = mysqli_connect("localhost", "root", "");
 		mysqli_select_db($link_kalimag, "kalimag");
-		$result = mysqli_query($link_kalimag, "select * from users");
+		$result = mysqli_query($link_kalimag, "select * from users WHERE (Email = '$email')");
 		$users = mysqli_fetch_array($result,MYSQLI_ASSOC);
-		$isValid = false;
-		foreach ($users as $value){
-			if ($users['Email'] == $email){
-				$isValid = true;
-			}
-		}
-		if ($isValid){
+		if($users){
 			echo 1;
 		} else {
 			echo 0;
