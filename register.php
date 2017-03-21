@@ -33,13 +33,17 @@ if (isset($_POST['submit'])){
 					<div id='emails'>
 						<label>Попълнете имейл адрес</label>
 						<input type="text" name="email" id="reg-email"/>
+						<em><?php echo $chek ?></em>
 					</div>
 					<div id="regPassword"> 
 						<label>Изберете сигурна парола</label>
 						<input type="password" name="reg-password" id="reg-password"/>
+						<em><?php echo $chek ?></em>
 						<label>Потвърждаване на парола</label>
 						<input type="password" name="repeatPass" id="repeat-pass"/>
+						<em><?php echo $chek ?></em>
 					</div>
+					<em><?php echo $chekPass ?></em>
 					<input type="submit" name="submit" Value="Продължи"/>
 					<h6><input type="checkbox" id="agree" name="agree" value="yes">Прочетох и съм съгласен с <a href="">Условията за ползване</a></h6>
 					<h6><input type="checkbox" name="agre" value="yes"/>Искам да бъда винаги запознат с най-актуалните оферти</h6>			

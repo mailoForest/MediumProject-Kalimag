@@ -16,7 +16,6 @@
 			$link_kalimag = mysqli_connect("localhost", "root", "");
 			mysqli_select_db($link_kalimag, "kalimag");
 			mysqli_query($link_kalimag, "UPDATE users SET Name='$name', Surname='$surname'  WHERE ID='$id'");
-			echo 1;
 		}
 	?>
     <div class="clr"></div>
@@ -31,9 +30,11 @@
     		<div class="article">
     			<div id="personalData">
 	    			<h3>Моите данни</h3>
-	    			<form action="" method="post">
+	    			<form enctype='multipart/form-data' action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
 	    				<div id='img'>
 	    					<img src="../assets/images/profil_pic.jpg" alt="" />
+	    					<input name="profilePic" type="file" accept="image/*" />
+							<input type='hidden' name='MAX_FILE_SIZE' value='8000000' />
 	    				</div>
 	    				
 	    				<div id='data'>

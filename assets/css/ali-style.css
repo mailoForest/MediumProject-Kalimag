@@ -132,7 +132,7 @@ body{
 	border-left: 1px solid #696969;
 }
 
-.form figure{
+.form em{
 	line-height: 1px;
 	color:red;
 	text-align: left;
@@ -347,7 +347,7 @@ body{
 }
 .offers-2 h2 sup, .offers h2 sup {
 	vertical-align: super;
-	font-size: 0.6em;;
+	font-size: 0.6em;
 }
 .offers-2 h2 sub, .offers h2 sub {
 	vertical-align: sub;
@@ -368,12 +368,12 @@ body{
 	width: 100%;
 }
 .main-subscribe{
-	margin:2em 0 0 2em;
+	margin:0 auto;
 	background-image: url('../images/subscribe.jpg');
 	background-position: center center;
 	background-repeat: no-repeat;
 	width: 100%;
-	border-radius: 5%;
+	padding:1.5em;
 	display: inline-block;
 	box-sizing: border-box;
 }
