@@ -4,16 +4,31 @@ if (isset($_POST['login'])){
 	$email = trim($_POST['email']);
 	$password = trim($_POST['password']);
 	if ($email!=='' && $password!==''){
-		$link_kalimag = mysqli_connect("localhost", "root", "");
-		mysqli_select_db($link_kalimag, "kalimag");
-		$result = mysqli_query($link_kalimag, "select * from users WHERE (Email = '$email') AND (Password = '$password')");
-		$users = mysqli_fetch_array($result,MYSQLI_ASSOC);
-		if ($users){
-			$_SESSION['ID'] = $users['ID'];
-			$_SESSION['name'] = $users['Name'];
-			$_SESSION['surname'] = $users['Surname'];
-			$_SESSION['email'] = $users['Email'];
-			$_SESSION['phone'] = $users['Phone'];
+		define ( 'DB_HOST', 'localhost' );
+		define ( 'DB_NAME', 'kalimag' );
+		define ( 'DB_USER', 'root' );
+		define ( 'DB_PASS', '' );
+		
+		try {
+			$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
+			$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+				
+			$result = $db->query ( "SELECT * FROM users WHERE (Email = '$email') AND (Password = '$password');" );
+		
+			$user = $result->fetch ( PDO::FETCH_ASSOC);
+		} catch ( PDOException $e ) {
+			echo "{error : " . $e->getMessage () . "}";
+			http_response_code ( 500 );
+		}
+
+		if ($user){
+			$_SESSION['ID'] = $user['ID'];
+			$_SESSION['name'] = $user['Name'];
+			$_SESSION['surname'] = $user['Surname'];
+			$_SESSION['email'] = $user['Email'];
+			$_SESSION['phone'] = $user['Phone'];
+			$_SESSION['pass'] = $user['Password'];
+//			$_SESSION['address'] = $user['Address'];
 				
 		}else $chek = 'Невалиден имейл или парола';
 	}

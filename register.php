@@ -1,25 +1,41 @@
 <?php 
-$chek='';
-$chekPass='';
-if (isset($_POST['submit'])){
+function register(){
 	$email = trim($_POST['email']);
 	$password = trim($_POST['reg-password']);
 	$passChek = trim($_POST['repeatPass']);
 	if ($email !=='' && $password !=='' && $passChek !==''){
 		if (strcmp($password, $passChek)===0){
-			$link_kalimag = mysqli_connect("localhost", "root", "");
-			mysqli_select_db($link_kalimag, "kalimag");
+			define ( 'DB_HOST', 'localhost' );
+			define ( 'DB_NAME', 'kalimag' );
+			define ( 'DB_USER', 'root' );
+			define ( 'DB_PASS', '' );
+			try {
+				$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
+				$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+					
+				$result = $db->exec( "INSERT INTO users VALUE(0,'$email', '','', '$password','');" );
 
-			mysqli_query($link_kalimag, "insert into users value(0,'$email', '','', '$password','')");
-			mysqli_close($link_kalimag);
-			session_start();
-				
-			$_SESSION['pass'] = $password;
-			$_SESSION['Email'] = $mail;
-			
-			header('Location: ../pages/index.php', true, 302);
+				// 				if($result){
+				// 					$res = $db->query ( "SELECT * FROM users WHERE (Email = '$email') AND (Password = '$password');" );
+				// 					$user = $res->fetch ( PDO::FETCH_ASSOC);
+					
+				// 					$_SESSION['ID'] = $user['ID'];
+				// 					$_SESSION['email'] = $user['Email'];
+
+				// 					header('Location: ../pages/account.php', true, 302);
+				// 				}
+			} catch ( PDOException $e ) {
+				echo "{error : " . $e->getMessage () . "}";
+				http_response_code ( 500 );
+			}
+
 		}else $chekPass = 'Паролите не съвпадат';
-	}else $chek = 'задължително поле';;
+	}else $chek = 'задължително поле';
+}
+$chek='';
+$chekPass='';
+if (isset($_POST['submit'])){
+	register();
 }
 ?>
 

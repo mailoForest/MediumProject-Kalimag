@@ -24,7 +24,12 @@ session_start();
                 <li id="info.php"><a href="info.php"><span>Инфо</span></a></li>
                 <?php
                 if (isset($_SESSION['ID'] )){
-                	echo '<li id="account.php"><a href="account.php"><span>Моят акаунт</span></a></li>';
+                	echo '<li id="myAccount"><a href="account.php"><span>Моят акаунт</span></a>
+ 							<ul class="submenu">
+		                        <li><a href="account.php"  personalSeting()">Настройки</a></li>
+		                        <li><a href="../logout.php">Изход</a></li>
+		                    </ul>
+                		</li>';
                 }else echo '<li id="account.php" onmouseover="showAccountBar()" onmouseout="hideAccountBar()"><a><span>Акаунт</span></a></li>';
                 ?>
                 <li id="cart.php"><a href="cart.php"><span>Количка</span></a></li>

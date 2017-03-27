@@ -8,9 +8,9 @@
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="../assets/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
 <link href="../assets/css/ali-style.css" rel="stylesheet" type="text/css" />
-<link href="../assets/css/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="../assets/css/menu-style.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="../assets/js/jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="../assets/js/menu-script.js"></script>

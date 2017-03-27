@@ -7,15 +7,9 @@
 <body>
 <div class="main">
     <?php include '../header.php';
+    	include '../functions.php';
 		if (isset($_POST['change'])){
-			$name = trim(($_POST['name']));
-			$surname = trim(($_POST['surname']));
-			$phone = trim(($_POST['phone']));
-			$address = trim(($_POST['address']));
-			$id=$_SESSION['ID'];
-			$link_kalimag = mysqli_connect("localhost", "root", "");
-			mysqli_select_db($link_kalimag, "kalimag");
-			mysqli_query($link_kalimag, "UPDATE users SET Name='$name', Surname='$surname'  WHERE ID='$id'");
+			changePersonalData();
 		}
 	?>
     <div class="clr"></div>
@@ -57,15 +51,20 @@
     					<form action="" method="post">
 	    					<fieldset>
 	    						<h3>Имейл:</h3>
+	    						<div id='oldEmail'>
 	    						<label>Настоящ имейл адрес: </label><?php echo $_SESSION['email']?><br/>
+	    						</div>
+	    						<div id='done-change-mail'>
+	    						<label>Нов имейл адрес: </label><a id="createdMail"></a><br/>
+	    						</div>
 	    						<div id="new-email">
 		    						<label>Нов имейл: </label>
-		    						<input type="text"/><br/>
+		    						<input id="newEmail" type="text" name="newEmail"/><br/>
 		    						
 		    						<label>Парола: </label>
-		    						<input type="text"/><br/>
+		    						<input id="newPassword" type="password" name="newPassword"/><br/>
 		    						<a id="Quit-change-email" onclick="quitChangeEmail()">Откажи</a>
-		    						<a id="changeEmail">Промени</a>
+		    						<a id="changeEmail" onclick="change()">Промени</a>
 	    						</div>
 	    						<p id="change-email" onclick="changeEmail()">Промени имейл адрес</p>
 	    					</fieldset>
@@ -73,15 +72,17 @@
     					
     					<form action="" method="post">
 	    					<fieldset>
-	    						<h3>Парола:</h3>
+	    						<h3>Парола:</h3><a id="doneChangePass">Паролата беше променена успешно</a>
 	    						<div id="new-pass">
+	    							<label>Парола: </label>
+		    						<input id="oldPassword" type="password" name="oldPassword"/><br/>
 		    						<label>Нов парола: </label>
-		    						<input type="text"/><br/>
+		    						<input type="password" id="newPass"/><br/>
 		    						
 		    						<label>Повтори парола: </label>
-		    						<input type="text"/><br/>
+		    						<input type="password" id="repeatPass"/><br/>
 		    						<a id="Quit-change-pass" onclick="quitChangePass()">Откажи</a>
-		    						<a id="changeEmail">Промени</a>
+		    						<a id="changePass" onclick="changePassword()">Промени</a>
 	    						</div>
 	    						<p id="change-pass" onclick="changePass()">Промени парола</p>
 	    					</fieldset>
