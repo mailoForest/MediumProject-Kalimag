@@ -7,37 +7,6 @@ session_start();
  * Time: 17:00 ч.
  */;
 
-if (isset($_GET['subcategory'])){
-    $subcategory = $_GET['subcategory'];
-    // свързва се с база данни и се опитва да намери категория = стойността на променливата. ако е спешно търсенето, препраща. иначе нищо не прави.
-
-    define ( 'DB_HOST', 'localhost' );
-    define ( 'DB_NAME', 'kalimag_db' );
-    define ( 'DB_USER', 'root' );
-    define ( 'DB_PASS', '' );
-
-    try {
-        $db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
-        $db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
-        $pstmt = $db->prepare("SELECT name FROM subcategories WHERE name = ?");
-
-
-        if ($pstmt->execute([$subcategory])) {
-            $countRows = 0;
-            while ($row = $pstmt->fetch(PDO::FETCH_NUM)) {
-                $countRows++;
-            }
-            if ($countRows > 0){
-                header("Location: product.php?category=$subcategory");
-                die();
-            }
-        }
-    }
-    catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-}
 include '../register.php';
 include '../login.php'
 ?>
