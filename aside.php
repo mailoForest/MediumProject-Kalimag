@@ -29,9 +29,9 @@
             <div class="overlay-id1 overlay-item">
                <h3>Избери подкатегория</h3>
                   <ul class="quickmenu">
-                    <li><a href="#" title="#">Мобилни телефони и аксесоари</a></li>
+                    <li><a href="?subcategory=Мобилни телефони и аксесоари" title="#">Мобилни телефони и аксесоари</a></li>
                     <li><a href="#" title="#">Таблети и аксесоари</a></li>
-                    <li><a href="#" title="#">Лаптопи и аксесоари</a></li>
+                    <li><a href="?subcategory=Лаптопи и аксесоари" title="#">Лаптопи и аксесоари</a></li>
                     <li><a href="#" title="#">Джаджи & Smart технологии Smartwatch</a></li>
                 </ul>
             </div>
