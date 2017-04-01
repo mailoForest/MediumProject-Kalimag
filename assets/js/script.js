@@ -44,23 +44,6 @@ function login(){
 emailField.onblur = function() {
 	if (isValidEmail(emailField.value)){ 
 		emailField.style.border = "2px solid green";
-//		var email = $('#email').val();
-//		$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
-//				function(data){
-//			if (data == 1) {
-//				var container = document.getElementById("mail");
-//				var errorMessage = document.createElement('span');
-//				errorMessage.className = 'error';
-//				errorMessage.textContent = 'Няма регистриран потребител с този имейл';
-//				emailField.style.border = "2px solid red";
-//				container.appendChild(errorMessage);
-//				hasErrors = true;
-//			}else{
-//			    hasErrors = false;
-//				emailField.style.border = "2px solid green";
-//				emailField.style.borderRadius = "5px"
-//			}
-//		});
 	}
 	else
 		{
@@ -80,7 +63,6 @@ pass.onkeyup = function(){
 	var email = $('#email').val();
 	$.post('http://localhost/MediumProject-Kalimag/check.php',{ password: password, email: email }, 
 			function(data){
-		console.log(password, email);
 		if (data == 1) {
 			pass.style.backgroundColor = "green";
 			hasErrors = false;

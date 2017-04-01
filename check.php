@@ -33,23 +33,23 @@ function checkPass($pass, $email){
 	return $res = $pstmt -> fetch(PDO::FETCH_COLUMN);
 }
 
-// if (isset($_POST['email'])){
-// 	$email = trim(($_POST['email']));
-// 	if ($email!==''){	
-// 		try {
-// 			$user = checkEmail($email);
-// 			if($user){
-// 				echo 1;
-// 			} else {
-// 				echo 0;
-// 			}
+if (isset($_POST['newEmail'])){
+	$email = trim(($_POST['newEmail']));
+	if ($email!==''){	
+		try {
+			$user = checkEmail($email);
+			if($user){
+				echo 1;
+			} else {
+				echo 0;
+			}
 		
-// 		} catch ( PDOException $e ) {
-// 			echo "{error : " . $e->getMessage () . "}";
-// 			http_response_code ( 500 );
-// 		}
-// 	}
-// }
+		} catch ( PDOException $e ) {
+			echo "{error : " . $e->getMessage () . "}";
+			http_response_code ( 500 );
+		}
+	}
+}
 
 if (isset($_REQUEST['password'])){
 	$pass = trim($_REQUEST['password']);

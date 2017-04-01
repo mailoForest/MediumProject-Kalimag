@@ -61,9 +61,10 @@ var emailField = document.getElementById('newEmail');
 emailField.onblur = function() {
 	if (isValidEmail(emailField.value)){ 
 
-	var email = $('#newEmail').val();
-	$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
+	var newEmail = $('#newEmail').val();
+	$.post('http://localhost/MediumProject-Kalimag/check.php',{ newEmail: newEmail }, 
 			function(data){
+		console.log(newEmail);
 		if (data == 1) {
 			emailField.style.border = "2px solid red";
 		} else {
