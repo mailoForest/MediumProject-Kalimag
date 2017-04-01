@@ -491,24 +491,6 @@
    </div>
            </div>
 </div>
-<!--<div class="gadget">-->
-<!--    <h2><span>Sponsors</span></h2>-->
-<!--    <div class="clr"></div>-->
-<!--    <ul class="ex_menu">-->
-<!--        <li><a href="#">Lorem ipsum dolor</a><br />-->
-<!--            Donec libero. Suspendisse bibendum</li>-->
-<!--        <li><a href="#">Donec mattis</a><br />-->
-<!--            Phasellus suscipit, leo a pharetra</li>-->
-<!--        <li><a href="#">Dui pede condimentum</a><br />-->
-<!--            Tellus eleifend magna eget</li>-->
-<!--        <li><a href="#">Condimentum lorem</a><br />-->
-<!--            Curabitur vel urna in tristique</li>-->
-<!--        <li><a href="#">Fringilla velit magna</a><br />-->
-<!--            Cras id urna orbi tincidunt orci ac</li>-->
-<!--        <li><a href="#">Suspendisse bibendum</a><br />-->
-<!--            purus nec placerat bibendum</li>-->
-<!--    </ul>-->
-<!--</div>-->
 <div class="gadget">
     <h2>Мъдри Слова</h2>
     <div class="clr"></div>
