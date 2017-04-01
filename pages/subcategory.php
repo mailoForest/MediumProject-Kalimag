@@ -1,15 +1,23 @@
 <?php
-const DB_NAME = 'kalimag_db';
-const DB_HOST = 'localhost';
-const DB_USER = 'root';
-const DB_PASSWORD = '';
+if (!defined('DB_HOST')){
+    define ( 'DB_HOST', 'localhost' );
+}
+if (!defined('DB_NAME')){
+    define ( 'DB_NAME', 'kalimag' );
+}
+if (!defined('DB_USER')){
+    define ( 'DB_USER', 'root' );
+}
+if (!defined('DB_PASS')){
+    define ( 'DB_PASS', '' );
+}
 
 $data = [];
 
 if (isset($_GET['name'])){
     try{
         $subcategory = $_GET['name'];
-        $db = new PDO( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD );
+        $db = new PDO( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
         $preparedStatement = $db->prepare("SELECT * FROM subcategories WHERE name = ?");
         $result = $preparedStatement->execute([$subcategory]);
 

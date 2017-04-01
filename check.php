@@ -1,8 +1,16 @@
 <?php
-define ( 'DB_HOST', 'localhost' );
-define ( 'DB_NAME', 'kalimag' );
-define ( 'DB_USER', 'root' );
-define ( 'DB_PASS', '' );
+if (!defined('DB_HOST')){
+    define ( 'DB_HOST', 'localhost' );
+}
+if (!defined('DB_NAME')){
+    define ( 'DB_NAME', 'kalimag' );
+}
+if (!defined('DB_USER')){
+    define ( 'DB_USER', 'root' );
+}
+if (!defined('DB_PASS')){
+    define ( 'DB_PASS', '' );
+}
 
 define ( 'CHECK_EMAIL', 'SELECT id FROM users WHERE email = ?;');
 define ( 'CHECK_PASSWORD', 'SELECT password FROM users WHERE password = ? AND email = ?;');
@@ -10,7 +18,7 @@ define ( 'CHECK_PASSWORD', 'SELECT password FROM users WHERE password = ? AND em
 
 function getConnection(){
 	try {
-		$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
+		$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
 		$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
 		return $db;

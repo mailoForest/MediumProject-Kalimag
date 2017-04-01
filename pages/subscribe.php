@@ -6,15 +6,18 @@
 </head>
 <body>
 <div class="main">
-<?php include '../header.php';
-require_once '../functions.php'?>
+    <?php
+        include '../header.php';
+        require_once '../functions.php';
+    ?>
   <div class="clr"></div>
   <div class="content">
     <div class="content_resize">
       <div class="mainbar">
           <main class="main-subscribe">
-          <?php 
-          if (isset($_SESSION['ID']) || !isSubscribe($_SESSION['ID']) ){
+          <?php
+          if (isset($_SESSION['ID']) ){
+              if (!isSubscribe($_SESSION['ID'])){
 	          echo'
 	          	<section class="subscribe">
 	          		<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
@@ -33,6 +36,7 @@ require_once '../functions.php'?>
 	          			<li>Ще бъдеш винаги информиран за нашите кампании</li>
 	          		</ul>
 	          	</section>';
+              }
           }	else{
           	echo'
 	          	<section class="subscribe">

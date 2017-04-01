@@ -6,7 +6,8 @@
 </head>
 <body>
 <div class="main">
-    <?php include '../header.php';
+    <?php
+        include '../header.php';
     	require_once '../functions.php';
     	$linkProfilPic = "../assets/images/profil_pic.jpg";
 		if (isset($_POST['change'])){
