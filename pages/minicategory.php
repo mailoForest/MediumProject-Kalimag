@@ -6,12 +6,12 @@ const DB_PASSWORD = '';
 
 $data = [];
 
-if (isset($_GET['subcategory'])){
+if (isset($_GET['name'])){
     try{
-        $subcategory = $_GET['subcategory'];
+        $minicategory = $_GET['name'];
         $db = new PDO( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASSWORD );
-        $preparedStatement = $db->prepare("SELECT * FROM subcategories WHERE name = ?");
-        $result = $preparedStatement->execute([$subcategory]);
+        $preparedStatement = $db->prepare("SELECT * FROM minicategories WHERE name = ?");
+        $result = $preparedStatement->execute([$minicategory]);
 
         if ($result) {
             $countRows = 0;
@@ -23,11 +23,11 @@ if (isset($_GET['subcategory'])){
                 header("Location: ./");
                 die();
             } else {
-                $result = $db->prepare('SELECT * FROM products p JOIN minicategories m on(p.minicategory_id = m.id)
-                                      JOIN subcategories s on(m.subcategory_id = s.id) WHERE s.name = ?');
-                $result->execute([$subcategory]);
+                $result = $db->prepare('SELECT p.name, man.name, p.model, p.price, p.picture FROM products p JOIN minicategories m on(p.minicategory_id = m.id)
+                                                  JOIN manufacturers man ON (man.id = p.manufacturer_id) WHERE m.name = ?');
+                $result->execute([$minicategory]);
 
-                while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+                while ($row = $result->fetch(PDO::FETCH_NUM)){
                     $data[] = $row;
                 }
             }
@@ -54,7 +54,13 @@ if (isset($_GET['subcategory'])){
         <div class="content_resize">
             <div class="mainbar">
                 <?php
-                var_dump($data);
+                foreach ($data as $d){
+                    $title  = $d[0] . ' ' . $d[1] . ' ' . $d[2];
+                    $price = $d[3];
+                    $imageName = $d[4];
+                    $productsPicturesPath = '../assets/images/products';
+                    echo "<article><img width='100em' src='$productsPicturesPath/$imageName' alt=''>$title <br>$price лв.</article>";
+                }
                 ?>
             </div>
             <div class="sidebar">
