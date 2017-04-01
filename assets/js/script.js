@@ -31,6 +31,7 @@ function hideLogBar() {
 
 var emailField = document.getElementById('email');
 var newMail = document.getElementById('reg-email');
+var pass = document.getElementById('password-log');
 var password = document.getElementById('reg-password');
 var repeatPass = document.getElementById('repeat-pass');
 var hasErrors = true;
@@ -42,23 +43,24 @@ function isValidEmail(username) {
 function login(){
 emailField.onblur = function() {
 	if (isValidEmail(emailField.value)){ 
-		var email = $('#email').val();
-		$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
-				function(data){
-			if (data == 0) {
-				var container = document.getElementById("mail");
-				var errorMessage = document.createElement('span');
-				errorMessage.className = 'error';
-				errorMessage.textContent = 'Няма регистриран потребител с този имейл';
-				emailField.style.border = "2px solid red";
-				container.appendChild(errorMessage);
-				hasErrors = true;
-			}else{
-			    hasErrors = false;
-				emailField.style.border = "2px solid green";
-				emailField.style.borderRadius = "5px"
-			}
-		});
+		emailField.style.border = "2px solid green";
+//		var email = $('#email').val();
+//		$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
+//				function(data){
+//			if (data == 1) {
+//				var container = document.getElementById("mail");
+//				var errorMessage = document.createElement('span');
+//				errorMessage.className = 'error';
+//				errorMessage.textContent = 'Няма регистриран потребител с този имейл';
+//				emailField.style.border = "2px solid red";
+//				container.appendChild(errorMessage);
+//				hasErrors = true;
+//			}else{
+//			    hasErrors = false;
+//				emailField.style.border = "2px solid green";
+//				emailField.style.borderRadius = "5px"
+//			}
+//		});
 	}
 	else
 		{
@@ -73,6 +75,21 @@ emailField.onblur = function() {
 	}
 }
 
+pass.onkeyup = function(){
+	var password = $('#password-log').val();
+	var email = $('#email').val();
+	$.post('http://localhost/MediumProject-Kalimag/check.php',{ password: password, email: email }, 
+			function(data){
+		console.log(password, email);
+		if (data == 1) {
+			pass.style.backgroundColor = "green";
+			hasErrors = false;
+		}else {
+			pass.style.backgroundColor = "red";
+			hasErrors = true;
+		}
+});
+}
 emailField.onfocus = function() {
 	var errorMessage = document.querySelector("#mail > .error");
 	if (errorMessage) {

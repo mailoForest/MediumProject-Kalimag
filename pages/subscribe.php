@@ -2,33 +2,46 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>KALImag</title>
-    <?php include '../head-links.php'?>
+    <?php include '../head-links.php';?>
 </head>
 <body>
 <div class="main">
-<?php include '../header.php'?>
+<?php include '../header.php';
+require_once '../functions.php'?>
   <div class="clr"></div>
   <div class="content">
     <div class="content_resize">
       <div class="mainbar">
           <main class="main-subscribe">
-          	<section class="subscribe">
-          		<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
-          		
-          		<form>
-          		<fieldset>
-          			<legend></legend>
-          			<input type="text" name="name" placeholder="Име" />
-          			<input type="text" name="mail" placeholder="Имейл" />
-          			<input type="submit" name="subscribe" value="Абонирай се"/>
-          			</fieldset>
-          		</form>
-          		<ul>
-          			<li>Ще бъдеш един от първите, които научават за актуалните оферти на KALImag</li>
-          			<li>Всяка седмица ще ти изпращаме избрани атрактивни предложения</li>
-          			<li>Ще бъдеш винаги информиран за нашите кампании</li>
-          		</ul>
-          	</section> 
+          <?php 
+          if (isset($_SESSION['ID']) || !isSubscribe($_SESSION['ID']) ){
+	          echo'
+	          	<section class="subscribe">
+	          		<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
+	          		
+	          		<form>
+	          		<fieldset>
+	          			<legend></legend>
+	          			<input type="text" name="name" placeholder="Име" />
+	          			<input type="text" name="mail" placeholder="Имейл" />
+	          			<input type="submit" name="subscribe" value="Абонирай се"/>
+	          			</fieldset>
+	          		</form>
+	          		<ul>
+	          			<li>Ще бъдеш един от първите, които научават за актуалните оферти на KALImag</li>
+	          			<li>Всяка седмица ще ти изпращаме избрани атрактивни предложения</li>
+	          			<li>Ще бъдеш винаги информиран за нашите кампании</li>
+	          		</ul>
+	          	</section>';
+          }	else{
+          	echo'
+	          	<section class="subscribe">
+	          	<img src=../assets/images/is-subscribe.jpg />				
+	          	<p>Вие вече сте абониран за бюлетина на KALImag, ще бъдете информиран ежеседмично за нашите нови предложения и оферти на посочения от вас имейл адрес: '.$_SESSION['email'].'!</p>
+	         
+	          	</section>';
+          }
+          ?>
           </main>
       </div>
       <div class="sidebar">

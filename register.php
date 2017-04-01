@@ -13,7 +13,7 @@ function register(){
 				$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
 				$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 					
-				$result = $db->exec( "INSERT INTO users VALUE(0,'$email', '','', '$password','');" );
+				$result = $db->exec( "INSERT INTO users VALUE(0,'$email', '$password','', '','','');" );
 
 				// 				if($result){
 				// 					$res = $db->query ( "SELECT * FROM users WHERE (Email = '$email') AND (Password = '$password');" );

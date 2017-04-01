@@ -76,8 +76,8 @@
 }
 .slideshow .overlay-item  {
     position: absolute;
-    top: 405px;
-    left:420px;
+    top: 62%;
+    left:31.1%;
     z-index: 999;
     width: 250px;
   	background: #004080;

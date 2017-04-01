@@ -22,13 +22,12 @@ if (isset($_POST['login'])){
 		}
 
 		if ($user){
-			$_SESSION['ID'] = $user['ID'];
-			$_SESSION['name'] = $user['Name'];
-			$_SESSION['surname'] = $user['Surname'];
-			$_SESSION['email'] = $user['Email'];
-			$_SESSION['phone'] = $user['Phone'];
-			$_SESSION['pass'] = $user['Password'];
-//			$_SESSION['address'] = $user['Address'];
+			$_SESSION['ID'] = $user['id'];
+			$_SESSION['name'] = $user['name'];
+			$_SESSION['surname'] = $user['surname'];
+			$_SESSION['email'] = $user['email'];
+			$_SESSION['phone'] = $user['phone'];
+			$_SESSION['pass'] = $user['password'];
 				
 		}else $chek = 'Невалиден имейл или парола';
 	}
@@ -45,7 +44,7 @@ if (isset($_POST['login'])){
 						<input type="text" placeholder="имейл адрес" name="email" id="email">
 					</div>
 					<div id="password">
-						<input type="password" placeholder="парола" name="password" id="password">
+						<input type="password" placeholder="парола" name="password" id="password-log">
 					</div>
 					<figure>
 						<figcaption><?php echo $chek?></figcaption>

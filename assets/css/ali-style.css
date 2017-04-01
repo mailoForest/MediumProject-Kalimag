@@ -382,6 +382,14 @@ body{
 	padding: 1em;
 	line-height: 1.5em;
 }
+
+.subscribe p{
+	font-size: 1.2em;
+	font-variant: small-caps;
+	color: #A52A2A;
+	text-align: justify;
+	padding-right: 1.2em;
+}
 .subscribe h2{
 	color: blue;
 }
@@ -507,7 +515,7 @@ body{
 #img {
 	float: left;
 	width: 20%;
-	height: 300px;
+	height: 200px;
 }
 #data label{
 	display:inline-block;

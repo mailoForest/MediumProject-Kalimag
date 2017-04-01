@@ -7,7 +7,8 @@
 <body>
 <div class="main">
     <?php include '../header.php';
-    	include '../functions.php';
+    	require_once '../functions.php';
+    	$linkProfilPic = "../assets/images/profil_pic.jpg";
 		if (isset($_POST['change'])){
 			changePersonalData();
 		}
@@ -26,7 +27,7 @@
 	    			<h3>Моите данни</h3>
 	    			<form enctype='multipart/form-data' action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
 	    				<div id='img'>
-	    					<img src="../assets/images/profil_pic.jpg" alt="" />
+	    					<img src='<?=$linkProfilPic?>' alt="" />
 	    					<input name="profilePic" type="file" accept="image/*" />
 							<input type='hidden' name='MAX_FILE_SIZE' value='8000000' />
 	    				</div>
@@ -41,8 +42,6 @@
 	    					 <label>Телефон</label>
 	    					 <input type="text" name="phone" id="phone" value='<?php echo $_SESSION['phone']?>'/><br />
 	    					 
-	    					 <label>Адрес</label>
-	    					 <input type="text" name="address" id="address"/><br />
 	    					 <input type="submit" name='change' id="change" value='Запази'/>
 	    				</div>
 	    			</form>
