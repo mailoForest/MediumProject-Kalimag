@@ -13,7 +13,13 @@ if (!defined('DB_PASS')){
 }
 
 define ('SUBSCRIBE', 'SELECT email FROM users WHERE is_subscribed = true AND id = ?;');
-define ('SUBSCRIBED', 'UPDATE users SET name = ?, is_subscribed = true WHERE email = ?;');
+define ('SUBSCRIBED', 'UPDATE users SET is_subscribed = true WHERE id = ?;');
+define ('GET_ALL_PRODUCT_IN_BASKET', 
+		"SELECT p.id, p.picture, p.name, m.name AS 'manufacturers', p.model, b.quantity, p.price
+			FROM baskets b JOIN products p
+			ON (b.product_id = p.id)
+			JOIN manufacturers m ON (p.manufacturer_id=m.id) 
+			WHERE b.users_id = ? AND ? < p.quantity");
 
 function getConnection(){
 	try {
@@ -66,14 +72,47 @@ function isSubscribe($userId){
 	return $res = $pstmt->fetch(PDO::FETCH_COLUMN);
 }
 
-function subscribed($name, $email){
+function subscribed($userId){
 	$db = getConnection();
 	try{
 		$pstmt = $db->prepare(SUBSCRIBED);
-		return $pstmt->execute(array($name, $email));
+		return $pstmt->execute(array($userId));
 	}catch (PDOException $e) {
-		throw new Exception('Bad Email provided!');
+		throw new Exception('Bad user ID provided!');
 	}
 }
 
+function sendEmail(){
+	include("../php-mailjet-v3-simple.class.php");
+	// This calls sends an email to one recipient.
+	$mj = new Mailjet('6a444d2f0f934c1f991743576f240b2d','937d7b1c283a81ad2c6b447cbc56eee7');
+
+	$params = array(
+			"method" => "POST",
+			"from" => "kalimag@abv.bg",
+			"to" => $_SESSION['email'],
+			"subject" => "Успешен абонамент Калимаг",
+			"text" => "Благодарим Ви, че се абонирахте за седмичния ни бюлетин!"
+	);
+
+	$result = $mj->sendEmail($params);
+	$error = 'email failed:'.$params['to'];
+
+	if ($mj->_response_code == 200){
+
+	}else
+		file_put_contents('mailErrors.txt', $error);
+}
+
+function getProductInBasket($userId, $quantity){
+	$db = getConnection();
+	try{
+		$pstmt = $db->prepare(GET_ALL_PRODUCT_IN_BASKET);
+		$pstmt->execute(array($userId, $quantity));
+		return $res = $pstmt->fetch(PDO::FETCH_ASSOC);
+	}catch (PDOException $e) {
+		throw new Exception('Bad user ID provided!');
+	}
+}
+var_dump(getProductInBasket(1, 15));
 ?>

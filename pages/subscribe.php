@@ -17,12 +17,10 @@
           <main class="main-subscribe">
           <?php
           function userSubscribed(){
-          	$name = trim( htmlentities($_POST['name-subscribe']));
-          	$email = trim( htmlentities($_POST['email-subscrabe']));
-          	if (empty($name) && empty($email)){
-          		echo 'Непопълнени полета';
-          	}else{
-          		$subscribed = subscribed($name, $email);
+          	$userId = $_SESSION['ID'];
+          	$subscribed = subscribed($userId);
+          	if ($subscribed){
+          		sendEmail();
           	}
           }
           if (isset($_POST['subscribe'])){
@@ -31,7 +29,7 @@
           if (!isset($_SESSION['ID']) ){
           	echo'
 	          	<section class="subscribe">
-				<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
+				<h2><span onclick="showLoginBar()">Впиши се </span>и се абонирай за бюлетина на KALImag!</h2>
 	          	<img src=../assets/images/abonament.jpg />
 				<ul>
           			<li>Ще бъдеш един от първите, които научават за актуалните оферти на KALImag</li>
@@ -46,9 +44,6 @@
 	          		
 	          		<form action="" method="post">
 	          		<fieldset>
-	          			<legend></legend>
-	          			<input type="text" name="name-subscribe" id="name-subscribe" placeholder="Име" />
-	          			<input type="text" name="email-subscrabe" id = "email-subscribe" placeholder="Имейл" />
 	          			<input type="submit" name="subscribe" value="Абонирай се"/>
 	          			</fieldset>
 	          		</form>
