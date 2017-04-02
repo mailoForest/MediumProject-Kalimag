@@ -31,7 +31,7 @@ if (isset($_GET['name'])){
                 header("Location: ./");
                 die();
             } else {
-                $result = $db->prepare('SELECT p.name, man.name, p.model, p.price, p.picture FROM products p JOIN minicategories m on(p.minicategory_id = m.id)
+                $result = $db->prepare('SELECT p.name, man.name, p.model, p.price, p.picture, p.id FROM products p JOIN minicategories m on(p.minicategory_id = m.id)
                                                   JOIN manufacturers man ON (man.id = p.manufacturer_id) WHERE m.name = ?');
                 $result->execute([$minicategory]);
 
@@ -66,8 +66,15 @@ if (isset($_GET['name'])){
                     $title  = $d[0] . ' ' . $d[1] . ' ' . $d[2];
                     $price = $d[3];
                     $imageName = $d[4];
+                    $productId = $d[5];
                     $productsPicturesPath = '../assets/images/products';
-                    echo "<article><img width='100em' src='$productsPicturesPath/$imageName' alt=''>$title <br>$price лв.</article>";
+                    echo "
+<article>
+    <a href='product.php?id=$productId'>
+        <article><img width='100em' src='$productsPicturesPath/$imageName' alt=''>$title <br>$price лв.</article>
+    </a>
+    <button onclick='addToCart($productId)'>Добави в кошницата</button>
+</article>";
                 }
                 ?>
             </div>
