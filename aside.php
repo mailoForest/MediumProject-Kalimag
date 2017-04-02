@@ -1,11 +1,3 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: HP Pavilion 17
- * Date: 4.3.2017 г.
- * Time: 13:58
- */
-?>
 <div class="gadget">
 <div class="container-menu">
    <div class="row overflownone">

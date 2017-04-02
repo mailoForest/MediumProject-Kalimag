@@ -76,13 +76,13 @@
 }
 .slideshow .overlay-item  {
     position: absolute;
-    top: 62%;
+    top: 406px;
     left:31.1%;
     z-index: 999;
     width: 700px;
   	background: #004080;
     opacity: 0.7;
-    height: 500px;
+    height: 510px;
     padding: 10px 30px;
     display: none;
     -webkit-animation: opendoor 0.75s ease 0s alternate;

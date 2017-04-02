@@ -5,12 +5,21 @@ function register(){
 	$passChek = trim($_POST['repeatPass']);
 	if ($email !=='' && $password !=='' && $passChek !==''){
 		if (strcmp($password, $passChek)===0){
-			define ( 'DB_HOST', 'localhost' );
-			define ( 'DB_NAME', 'kalimag' );
-			define ( 'DB_USER', 'root' );
-			define ( 'DB_PASS', '' );
-			try {
-				$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
+            if (!defined('DB_HOST')){
+                define ( 'DB_HOST', 'localhost' );
+            }
+            if (!defined('DB_NAME')){
+                define ( 'DB_NAME', 'kalimag' );
+            }
+            if (!defined('DB_USER')){
+                define ( 'DB_USER', 'root' );
+            }
+            if (!defined('DB_PASS')){
+                define ( 'DB_PASS', '' );
+            }
+
+            try {
+				$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
 				$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 					
 				$result = $db->exec( "INSERT INTO users VALUE(0,'$email', '$password','', '','','');" );

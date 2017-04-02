@@ -1,21 +1,34 @@
 <?php
-$chek = '';
+$check = '';
+$user = [];
 if (isset($_POST['login'])){
 	$email = trim($_POST['email']);
 	$password = trim($_POST['password']);
-	if ($email!=='' && $password!==''){
-		define ( 'DB_HOST', 'localhost' );
-		define ( 'DB_NAME', 'kalimag' );
-		define ( 'DB_USER', 'root' );
-		define ( 'DB_PASS', '' );
-		
-		try {
-			$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS );
-			$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+	$email = htmlentities($email);
+    $password = htmlentities($password);
+
+    if ($email !== '' && $password !== ''){
+        if (!defined('DB_HOST')){
+            define ( 'DB_HOST', 'localhost' );
+        }
+        if (!defined('DB_NAME')){
+            define ( 'DB_NAME', 'kalimag' );
+        }
+        if (!defined('DB_USER')){
+            define ( 'DB_USER', 'root' );
+        }
+        if (!defined('DB_PASS')){
+            define ( 'DB_PASS', '' );
+        }
+
+        try {
+			$db = new PDO ("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
+			$db->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 				
-			$result = $db->query ( "SELECT * FROM users WHERE (Email = '$email') AND (Password = '$password');" );
+			$result = $db->query ("SELECT * FROM users WHERE (email = '$email') AND (password = '$password');" );
 		
-			$user = $result->fetch ( PDO::FETCH_ASSOC);
+			$user = $result->fetch (PDO::FETCH_ASSOC);
 		} catch ( PDOException $e ) {
 			echo "{error : " . $e->getMessage () . "}";
 			http_response_code ( 500 );
@@ -28,8 +41,9 @@ if (isset($_POST['login'])){
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['phone'] = $user['phone'];
 			$_SESSION['pass'] = $user['password'];
-				
-		}else $chek = 'Невалиден имейл или парола';
+		} else {
+            $check = 'Невалиден имейл или парола';
+        }
 	}
 }
 ?>
@@ -47,7 +61,7 @@ if (isset($_POST['login'])){
 						<input type="password" placeholder="парола" name="password" id="password-log">
 					</div>
 					<figure>
-						<figcaption><?php echo $chek?></figcaption>
+						<figcaption><?php echo $check?></figcaption>
 					</figure>
 					<input type="submit" name="login" Value="Продължи">					
 					<table>
@@ -66,7 +80,5 @@ if (isset($_POST['login'])){
 					</article>
 				</form>
         </section>
-        
-
     </main>
 </div>

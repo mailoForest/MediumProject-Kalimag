@@ -6,8 +6,10 @@
 </head>
 <body>
 <div class="main">
-<?php include '../header.php';
-require_once '../functions.php'?>
+    <?php
+        include '../header.php';
+        require_once '../functions.php';
+    ?>
   <div class="clr"></div>
   <div class="content">
     <div class="content_resize">
@@ -56,13 +58,13 @@ require_once '../functions.php'?>
 	          			<li>Ще бъдеш винаги информиран за нашите кампании</li>
 	          		</ul>
 	          	</section>';
-          }	else{
-          	echo'
-	          	<section class="subscribe">
-	          	<img src=../assets/images/is-subscribe.jpg />				
-	          	<p>Вие вече сте абониран за бюлетина на KALImag, ще бъдете информиран ежеседмично за нашите нови предложения и оферти на посочения от вас имейл адрес: '.$_SESSION['email'].'!</p>
-	         
-	          	</section>';
+     		}else{
+          		echo'
+		          	<section class="subscribe">
+		          	<img src=../assets/images/is-subscribe.jpg />				
+		          	<p>Вие вече сте абониран за бюлетина на KALImag, ще бъдете информиран ежеседмично за нашите нови предложения и оферти на посочения от вас имейл адрес: '.$_SESSION['email'].'!</p>
+		         
+		          	</section>';
           }
           ?>
           </main>
