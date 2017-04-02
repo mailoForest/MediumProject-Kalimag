@@ -5,6 +5,7 @@ define ( 'DB_USER', 'root' );
 define ( 'DB_PASS', '' );	
 
 define ('SUBSCRIBE', 'SELECT email FROM users WHERE is_subscribed = true AND id = ?;');
+define ('SUBSCRIBED', 'UPDATE users SET name = ?, is_subscribed = true WHERE email = ?;');
 
 function getConnection(){
 	try {
@@ -56,4 +57,15 @@ function isSubscribe($userId){
 	$pstmt->execute(array($userId));
 	return $res = $pstmt->fetch(PDO::FETCH_COLUMN);
 }
+
+function subscribed($name, $email){
+	$db = getConnection();
+	try{
+		$pstmt = $db->prepare(SUBSCRIBED);
+		return $pstmt->execute(array($name, $email));
+	}catch (PDOException $e) {
+		throw new Exception('Bad Email provided!');
+	}
+}
+
 ?>

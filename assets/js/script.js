@@ -34,6 +34,8 @@ var newMail = document.getElementById('reg-email');
 var pass = document.getElementById('password-log');
 var password = document.getElementById('reg-password');
 var repeatPass = document.getElementById('repeat-pass');
+var subEmail = document.getElementById('email-subscribe');
+var subName = document.getElementById('name-subscribe');
 var hasErrors = true;
 
 function isValidEmail(username) {
@@ -81,6 +83,8 @@ emailField.onfocus = function() {
 	}
 };
 }
+
+
 	
 function registration(){
 repeatPass.onblur = function() {
@@ -103,8 +107,8 @@ repeatPass.onblur = function() {
 newMail.onblur = function() {
 	if (isValidEmail(newMail.value)){ 
 
-	var email = $('#reg-email').val();
-	$.post('http://localhost/MediumProject-Kalimag/check.php',{ email: email }, 
+	var newEmail = $('#reg-email').val();
+	$.post('http://localhost/MediumProject-Kalimag/check.php',{ newEmail: newEmail }, 
 			function(data){
 		if (data == 1) {
 			var container = document.getElementById("emails");
@@ -156,12 +160,55 @@ if (emailField){
 if (password){
 	registration();
 }
+
 document.forms[0].onsubmit = function(event) {
 	if (hasErrors) {
 		event.preventDefault();
 	}
 }
 document.forms[1].onsubmit = function(event) {
+	if (hasErrors) {
+		event.preventDefault();
+	}
+}
+
+subName.onblur = function(){
+	subName.style.border = "2px solid green";
+if(subName.value == ''){
+	subName.value = 'Задължително поле!'
+	subName.style.border = "2px solid red";
+	hasErrors = true;
+}else{
+	subName.style.border = "2px solid green";
+	hasErrors = false;
+}
+};
+
+subEmail.onkeyup = function(){
+if (isValidEmail(subEmail.value)){ 
+
+	var newEmail = $('#email-subscribe').val();
+	$.post('http://localhost/MediumProject-Kalimag/check.php',{ newEmail: newEmail }, 
+			function(data){
+		console.log(newEmail);
+		if (data == 1) {
+			subEmail.style.border = "2px solid green";
+			subEmail.style.backgroundColor = "green";
+			hasErrors = false;
+		} else {
+			subEmail.style.border = "2px solid red";
+			hasErrors = true;
+		}
+	});
+	}
+	else
+	{
+		subEmail.style.border = "2px solid red";
+		hasErrors = true;
+}
+};
+
+document.forms[2].onsubmit = function(event) {
 	if (hasErrors) {
 		event.preventDefault();
 	}

@@ -13,17 +13,40 @@ require_once '../functions.php'?>
     <div class="content_resize">
       <div class="mainbar">
           <main class="main-subscribe">
-          <?php 
-          if (isset($_SESSION['ID']) || !isSubscribe($_SESSION['ID']) ){
-	          echo'
+          <?php
+          function userSubscribed(){
+          	$name = trim( htmlentities($_POST['name-subscribe']));
+          	$email = trim( htmlentities($_POST['email-subscrabe']));
+          	if (empty($name) && empty($email)){
+          		echo 'Непопълнени полета';
+          	}else{
+          		$subscribed = subscribed($name, $email);
+          	}
+          }
+          if (isset($_POST['subscribe'])){
+          	userSubscribed();
+          }
+          if (!isset($_SESSION['ID']) ){
+          	echo'
+	          	<section class="subscribe">
+				<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
+	          	<img src=../assets/images/abonament.jpg />
+				<ul>
+          			<li>Ще бъдеш един от първите, които научават за актуалните оферти на KALImag</li>
+          			<li>Всяка седмица ще ти изпращаме избрани атрактивни предложения</li>
+          			<li>Ще бъдеш винаги информиран за нашите кампании</li>
+          		</ul>         	
+	          	</section>';
+          }else if(!isSubscribe($_SESSION['ID'])){
+          	echo'
 	          	<section class="subscribe">
 	          		<h2>Абонирай се за бюлетина на KALImag, за да си информиран за нашите нови предложения и оферти!</h2>
 	          		
-	          		<form>
+	          		<form action="" method="post">
 	          		<fieldset>
 	          			<legend></legend>
-	          			<input type="text" name="name" placeholder="Име" />
-	          			<input type="text" name="mail" placeholder="Имейл" />
+	          			<input type="text" name="name-subscribe" id="name-subscribe" placeholder="Име" />
+	          			<input type="text" name="email-subscrabe" id = "email-subscribe" placeholder="Имейл" />
 	          			<input type="submit" name="subscribe" value="Абонирай се"/>
 	          			</fieldset>
 	          		</form>
