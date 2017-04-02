@@ -160,7 +160,28 @@ if (emailField){
 if (password){
 	registration();
 }
-
+function removeProduct(id){
+	if (id==='') return;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', 'http://localhost/MediumProject-Kalimag/check.php?remove=' + id, true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			console.log(xhr.responseText);
+				document.getElementById(id).style.display = 'none';
+				var response = parseInt(this.responseText);
+				document.getElementById('sumAllProctsInBasket').innerHTML = response;
+				document.getElementById('sumAllProctsInBasketAndDeliveryPrice').innerHTML = response;
+				if (this.responseText < 1000){
+					document.getElementById('sumAllProctsInBasketAndDeliveryPrice').innerHTML = response + 5;
+					document.getElementById('delivery-text').innerHTML = '5 лв.';	
+					var em = document.getElementById('noticeDelivery');
+					em.innerHTML = '* При покупка над 1000 лв. доставката е безплатна!';				
+				}
+			}
+		}
+	xhr.send();
+}
 document.forms[0].onsubmit = function(event) {
 	if (hasErrors) {
 		event.preventDefault();

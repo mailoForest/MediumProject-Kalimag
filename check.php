@@ -14,6 +14,8 @@ if (!defined('DB_PASS')){
 
 define ( 'CHECK_EMAIL', 'SELECT id FROM users WHERE email = ?;');
 define ( 'CHECK_PASSWORD', 'SELECT password FROM users WHERE password = ? AND email = ?;');
+define ('DLETE_PRODUCT_FROM_CARTS', 'DELETE FROM baskets WHERE users_id = ? AND product_id = ?;');
+
 
 
 function getConnection(){
@@ -39,6 +41,26 @@ function checkPass($pass, $email){
 	$pstmt = $db ->prepare(CHECK_PASSWORD);
 	$pstmt -> execute(array($pass, $email));
 	return $res = $pstmt -> fetch(PDO::FETCH_COLUMN);
+}
+
+function removeProduct($userId, $productId){
+	$db = getConnection();
+	try{
+		$pstmt = $db->prepare(DLETE_PRODUCT_FROM_CARTS);
+		return $pstmt->execute(array($userId, $productId));
+	}catch (PDOException $e) {
+		throw new Exception('Bad user ID provided!');
+	}
+}
+
+function getAllSumProducts($userId){
+	$db = getConnection();
+	$pstmt = $db->prepare('SELECT SUM(b.quantity*p.price) FROM baskets b JOIN products p
+		ON (b.product_id=p.id)
+		WHERE b.users_id = ?');
+	$pstmt->execute(array($userId));
+	return $res = $pstmt->fetch(PDO::FETCH_COLUMN);
+
 }
 
 if (isset($_POST['newEmail'])){
@@ -71,6 +93,19 @@ if (isset($_REQUEST['password'])){
 			echo 0;
 		}
 	
+	} catch ( PDOException $e ) {
+		echo "{error : " . $e->getMessage () . "}";
+		http_response_code ( 500 );
+	}
+}
+
+if (isset($_GET['remove'])){
+	session_start();
+	$productId = $_GET['remove'];
+	$userId = $_SESSION['ID'];
+	try {
+		$result = removeProduct($userId, $productId);
+		echo getAllSumProducts($userId);
 	} catch ( PDOException $e ) {
 		echo "{error : " . $e->getMessage () . "}";
 		http_response_code ( 500 );

@@ -20,6 +20,9 @@ define ('GET_ALL_PRODUCT_IN_BASKET',
 			ON (b.product_id = p.id)
 			JOIN manufacturers m ON (p.manufacturer_id=m.id) 
 			WHERE b.users_id = ? AND ? < p.quantity");
+define ('GET_SUM_PRODUCTS', 'SELECT SUM(b.quantity*p.price) FROM baskets b JOIN products p
+		ON (b.product_id=p.id)
+		WHERE b.users_id = ?');
 
 function getConnection(){
 	try {
@@ -109,10 +112,17 @@ function getProductInBasket($userId, $quantity){
 	try{
 		$pstmt = $db->prepare(GET_ALL_PRODUCT_IN_BASKET);
 		$pstmt->execute(array($userId, $quantity));
-		return $res = $pstmt->fetch(PDO::FETCH_ASSOC);
+		return $res = $pstmt ->fetchAll(PDO::FETCH_ASSOC);
 	}catch (PDOException $e) {
 		throw new Exception('Bad user ID provided!');
 	}
 }
-var_dump(getProductInBasket(1, 15));
+
+function getAllSumProducts($userId){
+	$db = getConnection();
+		$pstmt = $db->prepare(GET_SUM_PRODUCTS);
+		$pstmt->execute(array($userId));
+		return $res = $pstmt->fetch(PDO::FETCH_COLUMN);
+
+}
 ?>
