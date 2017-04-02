@@ -1,19 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
 <title>KALImag | Contact</title>
     <?php include '../head-links.php'?>
 </head>
 <body>
 <div class="main">
-    <?php include '../header.php'?>
+    <?php
+    include '../header.php';
+    include '../functions.php';
+    ?>
   <div class="clr"></div>
   <div class="content">
     <div class="content_resize">
       <div class="mainbar">
-        <div class="article">
-          
-        </div>
+          <section>
+
+          </section>
       </div>
       <div class="sidebar">
         <div class="search">

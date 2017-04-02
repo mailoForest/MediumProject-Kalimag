@@ -78,8 +78,7 @@ if (isset($_GET['id'])){
 }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
     <title>KALImag</title>
     <?php include '../head-links.php'?>
@@ -92,12 +91,28 @@ if (isset($_GET['id'])){
         <div class="content_resize">
             <div class="mainbar">
                 <?php
+                $decideIfShouldBeAddedToCart = '';
+                $productTitle = "$productName $manufacturerName $model";
+
+                if (isset($_SESSION['ID'])){
+                    $userId = $_SESSION['ID'];
+                    $decideIfShouldBeAddedToCart = "addToCart($userId, $productId, '$productTitle')";
+                } else {
+                    $decideIfShouldBeAddedToCart = "showLoginBar()";
+                }
+
                 $productsPicturesPath = '../assets/images/products';
-                echo "<section id='title'>$productName $manufacturerName $model</section>
+
+                echo "<section id='title'>$productTitle</section>
 
                       <section id='present'>
                         <article><img src='$productsPicturesPath/$picture' alt=''></article>
-                        <article><div>$price лв.</div><div>$isAvailable</div><div>$warranty</div><div><button onclick='addToCart($productId)'>Добави в количката</button></div></article>
+                        <article>
+                            <div>$price лв.</div>
+                            <div>$isAvailable</div>
+                            <div>$warranty</div>
+                            <div><button onclick=\"$decideIfShouldBeAddedToCart\">Добави в количката</button></div>
+                        </article>
                       </section>
                       <section id='specifications'>";
                 foreach ($specifications as $specification){

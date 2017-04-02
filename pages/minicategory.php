@@ -62,18 +62,29 @@ if (isset($_GET['name'])){
         <div class="content_resize">
             <div class="mainbar">
                 <?php
+                $decideIfShouldBeAddedToCart = '';
+
+
                 foreach ($data as $d){
                     $title  = $d[0] . ' ' . $d[1] . ' ' . $d[2];
                     $price = $d[3];
                     $imageName = $d[4];
                     $productId = $d[5];
                     $productsPicturesPath = '../assets/images/products';
+
+                    if (isset($_SESSION['ID'])){
+                        $userId = $_SESSION['ID'];
+                        $decideIfShouldBeAddedToCart = "addToCart($userId, $productId, '$title')";
+                    } else {
+                        $decideIfShouldBeAddedToCart = "showLoginBar()";
+                    }
+
                     echo "
 <article>
     <a href='product.php?id=$productId'>
         <article><img width='100em' src='$productsPicturesPath/$imageName' alt=''>$title <br>$price лв.</article>
     </a>
-    <button onclick='addToCart($productId)'>Добави в кошницата</button>
+    <button onclick=\"$decideIfShouldBeAddedToCart\">Добави в кошницата</button>
 </article>";
                 }
                 ?>

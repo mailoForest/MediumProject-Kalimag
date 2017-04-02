@@ -171,3 +171,8 @@ document.forms[1].onsubmit = function(event) {
 		event.preventDefault();
 	}
 }
+function addToCart(userId, productId, productTitle ) {
+    $.get( "http://localhost/MediumProject-Kalimag/addToCart.php", { userId: userId, productId: productId } );
+
+    alert('Успешно добавихте ' + productTitle + ' във вашата кошница!');
+}
