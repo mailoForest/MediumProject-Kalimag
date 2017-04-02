@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <head>
 <title>KALImag | Contact</title>
-    <?php include '../head-links.php';
-    require_once '../functions.php';
-    ?>
+    <?php include '../head-links.php';?>
 </head>
 <body>
 <div class="main">
@@ -15,11 +13,6 @@
   <div class="content">
     <div class="content_resize">
       <div class="mainbar">
-<<<<<<< HEAD
-          <section>
-
-          </section>
-=======
         <div class="article-basket">
 	        <form action="" method="post" id='form-basket'>
 	         	<?php
@@ -56,11 +49,9 @@
 		         			<p><strong>За да добавяте продукти в количката трябва да се <span onclick="showLoginBar()">впишете</span>!</strong></p>
 		         			</div>';
 	         	}
-	         	?>
-	         	
+	         	?> 	
          	</form>
         </div>
->>>>>>> 7a600b4700c3ec80ae44f65ee03768f4e506e386
       </div>
       <div class="sidebar">
         <div class="search">

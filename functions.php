@@ -23,7 +23,7 @@ define ('GET_ALL_PRODUCT_IN_BASKET',
 define ('GET_SUM_PRODUCTS', 'SELECT SUM(b.quantity*p.price) FROM baskets b JOIN products p
 		ON (b.product_id=p.id)
 		WHERE b.users_id = ?');
-
+// define ('ORDER_PRODUCTS', )
 function getConnection(){
 	try {
 		$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
@@ -33,7 +33,7 @@ function getConnection(){
 	} catch ( PDOException $e ) {
 		throw new Exception ( "No connection with database", $e );
 	}
-};
+}
 
 function changePersonalData(){
 	$name = trim(($_POST['name']));
