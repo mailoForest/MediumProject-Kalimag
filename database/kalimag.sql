@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time:  1 апр 2017 в 23:50
--- Версия на сървъра: 10.1.21-MariaDB
--- PHP Version: 7.1.1
+-- Generation Time: Apr 03, 2017 at 05:06 AM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `addresses`
+-- Table structure for table `addresses`
 --
 
 CREATE TABLE `addresses` (
@@ -36,7 +36,7 @@ CREATE TABLE `addresses` (
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `baskets`
+-- Table structure for table `baskets`
 --
 
 CREATE TABLE `baskets` (
@@ -45,10 +45,20 @@ CREATE TABLE `baskets` (
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `baskets`
+--
+
+INSERT INTO `baskets` (`users_id`, `product_id`, `quantity`) VALUES
+(1, 2, 4),
+(1, 15, 3),
+(1, 16, 7),
+(2, 2, 10);
+
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -57,7 +67,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`) VALUES
@@ -73,7 +83,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `manufacturers`
+-- Table structure for table `manufacturers`
 --
 
 CREATE TABLE `manufacturers` (
@@ -82,7 +92,7 @@ CREATE TABLE `manufacturers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `manufacturers`
+-- Dumping data for table `manufacturers`
 --
 
 INSERT INTO `manufacturers` (`id`, `name`) VALUES
@@ -105,7 +115,7 @@ INSERT INTO `manufacturers` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `minicategories`
+-- Table structure for table `minicategories`
 --
 
 CREATE TABLE `minicategories` (
@@ -115,7 +125,7 @@ CREATE TABLE `minicategories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `minicategories`
+-- Dumping data for table `minicategories`
 --
 
 INSERT INTO `minicategories` (`id`, `name`, `subcategory_id`) VALUES
@@ -134,7 +144,7 @@ INSERT INTO `minicategories` (`id`, `name`, `subcategory_id`) VALUES
 (13, 'Чанти за лаптопи', 3),
 (14, 'Хард дискове за лаптопи', 3),
 (15, 'Охладителни подложки', 3),
-(16, 'Батерии за лаптопи', 3),
+(16, 'Батерии', 3),
 (17, 'Смарт часовници', 4),
 (18, 'Фитнес гривни', 4),
 (19, 'Други джаджи', 4),
@@ -202,7 +212,7 @@ INSERT INTO `minicategories` (`id`, `name`, `subcategory_id`) VALUES
 (81, 'Аксесоари за спортни видеокамери', 18),
 (82, 'Филтри DSLR', 18),
 (83, 'Четци за карти', 18),
-(84, 'Дигитални фоторамки', 18),
+(84, 'Дигитални фото рамки', 18),
 (85, 'Лупи', 19),
 (86, 'Микроскопи', 19),
 (87, 'Телескопи', 19),
@@ -265,6 +275,8 @@ INSERT INTO `minicategories` (`id`, `name`, `subcategory_id`) VALUES
 (144, 'Хранителни добавки', 32),
 (145, 'Кростренажори', 32),
 (146, 'Велоергометри', 32),
+(147, 'Маратонки', 33),
+(148, 'Спортна екипировка', 33),
 (149, 'Футбол', 34),
 (150, 'Волейбол', 34),
 (151, 'Баскетбол', 34),
@@ -280,6 +292,7 @@ INSERT INTO `minicategories` (`id`, `name`, `subcategory_id`) VALUES
 (161, 'Люлки', 37),
 (162, 'Градински чадъри', 37),
 (163, 'Шатри', 37),
+(164, 'Коледна украса', 38),
 (165, 'Спално бельо', 39),
 (166, 'Възглавници', 39),
 (167, 'Завивки', 39),
@@ -319,7 +332,7 @@ INSERT INTO `minicategories` (`id`, `name`, `subcategory_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -334,7 +347,7 @@ CREATE TABLE `orders` (
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -350,7 +363,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `manufacturer_id`, `model`, `minicategory_id`, `price`, `picture`, `warranty`, `quantity`) VALUES
@@ -385,7 +398,7 @@ INSERT INTO `products` (`id`, `name`, `manufacturer_id`, `model`, `minicategory_
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `products_specification_names_specification_values`
+-- Table structure for table `products_specification_names_specification_values`
 --
 
 CREATE TABLE `products_specification_names_specification_values` (
@@ -395,7 +408,7 @@ CREATE TABLE `products_specification_names_specification_values` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `products_specification_names_specification_values`
+-- Dumping data for table `products_specification_names_specification_values`
 --
 
 INSERT INTO `products_specification_names_specification_values` (`product_id`, `specification_names`, `specification_values`) VALUES
@@ -604,7 +617,7 @@ INSERT INTO `products_specification_names_specification_values` (`product_id`, `
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `specification_names`
+-- Table structure for table `specification_names`
 --
 
 CREATE TABLE `specification_names` (
@@ -613,7 +626,7 @@ CREATE TABLE `specification_names` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `specification_names`
+-- Dumping data for table `specification_names`
 --
 
 INSERT INTO `specification_names` (`id`, `specification_name`) VALUES
@@ -636,7 +649,7 @@ INSERT INTO `specification_names` (`id`, `specification_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `specification_values`
+-- Table structure for table `specification_values`
 --
 
 CREATE TABLE `specification_values` (
@@ -645,7 +658,7 @@ CREATE TABLE `specification_values` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `specification_values`
+-- Dumping data for table `specification_values`
 --
 
 INSERT INTO `specification_values` (`id`, `specification_value`) VALUES
@@ -669,7 +682,7 @@ INSERT INTO `specification_values` (`id`, `specification_value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `subcategories`
+-- Table structure for table `subcategories`
 --
 
 CREATE TABLE `subcategories` (
@@ -679,7 +692,7 @@ CREATE TABLE `subcategories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `subcategories`
+-- Dumping data for table `subcategories`
 --
 
 INSERT INTO `subcategories` (`id`, `name`, `category_id`) VALUES
@@ -734,7 +747,7 @@ INSERT INTO `subcategories` (`id`, `name`, `category_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура на таблица `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -744,26 +757,19 @@ CREATE TABLE `users` (
   `name` varchar(50) DEFAULT NULL,
   `surname` varchar(45) DEFAULT NULL,
   `phone` varchar(10) DEFAULT NULL,
-  `is_subscribed` tinyint(1) NOT NULL DEFAULT '0'
+  `is_subscribed` tinyint(1) NOT NULL DEFAULT '0',
+  `picture` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Схема на данните от таблица `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `phone`, `is_subscribed`) VALUES
-(1, 'minka@abv.bg', '1234', '', '', '', 0);
-
--- --------------------------------------------------------
-
---
--- Структура на таблица `users_have_addresses`
---
-
-CREATE TABLE `users_have_addresses` (
-  `user_id` int(11) NOT NULL,
-  `address_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `users` (`id`, `email`, `password`, `name`, `surname`, `phone`, `is_subscribed`, `picture`) VALUES
+(1, 'ali_ch@abv.bg', '1234', 'Ali', 'Cholak', '0885400000', 0, '356a192b7913b04c54574d18c28d46e6395428ab.jpg'),
+(2, 'asan@abv.bg', '1234', 'Angelinka', '', '', 0, NULL),
+(3, 'minch@abv.bg', '1234', 'Минчо', 'Минчев', '0000000', 0, NULL),
+(4, 'dsa@abv.bg', '1234', '', '', '', 0, NULL);
 
 --
 -- Indexes for dumped tables
@@ -800,8 +806,7 @@ ALTER TABLE `manufacturers`
 --
 ALTER TABLE `minicategories`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_minicategories_subcategories` (`subcategory_id`),
-  ADD KEY `index_name` (`name`);
+  ADD KEY `fk_minicategories_subcategories` (`subcategory_id`);
 
 --
 -- Indexes for table `orders`
@@ -856,14 +861,6 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email_UNIQUE` (`email`);
 
 --
--- Indexes for table `users_have_addresses`
---
-ALTER TABLE `users_have_addresses`
-  ADD PRIMARY KEY (`user_id`,`address_id`),
-  ADD KEY `fk_users_has_addresses_addresses1_idx` (`address_id`),
-  ADD KEY `fk_users_has_addresses_users_idx` (`user_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -916,57 +913,50 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- Ограничения за дъмпнати таблици
+-- Constraints for dumped tables
 --
 
 --
--- Ограничения за таблица `baskets`
+-- Constraints for table `baskets`
 --
 ALTER TABLE `baskets`
   ADD CONSTRAINT `fk_baskets_products1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_baskets_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_baskets_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения за таблица `minicategories`
+-- Constraints for table `minicategories`
 --
 ALTER TABLE `minicategories`
   ADD CONSTRAINT `fk_minicategories_subcategories` FOREIGN KEY (`subcategory_id`) REFERENCES `subcategories` (`id`);
 
 --
--- Ограничения за таблица `orders`
+-- Constraints for table `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `fk_orders_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_orders_products1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_orders_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_orders_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения за таблица `products`
+-- Constraints for table `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `fk_manufacturers_products` FOREIGN KEY (`manufacturer_id`) REFERENCES `manufacturers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_products_subcategories1` FOREIGN KEY (`minicategory_id`) REFERENCES `minicategories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения за таблица `products_specification_names_specification_values`
+-- Constraints for table `products_specification_names_specification_values`
 --
 ALTER TABLE `products_specification_names_specification_values`
   ADD CONSTRAINT `fk_productId_products` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Ограничения за таблица `subcategories`
+-- Constraints for table `subcategories`
 --
 ALTER TABLE `subcategories`
   ADD CONSTRAINT `fk_subcategories_categories1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Ограничения за таблица `users_have_addresses`
---
-ALTER TABLE `users_have_addresses`
-  ADD CONSTRAINT `fk_users_has_addresses_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_has_addresses_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
