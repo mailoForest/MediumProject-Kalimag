@@ -14,7 +14,7 @@
     <div class="content_resize">
       <div class="mainbar">
         <div class="article-basket">
-	        <form action="order.php" method="post" id='form-basket'>
+	       <div  id='form-basket'>
 	        <h2>данни за поръчката:</h2>
 	        	<table>
 	        		<thead>
@@ -28,6 +28,9 @@
 	        		</thead>
 	        		<tbody>
 	         	<?php
+	         	$street = '';
+	         	$city = '';
+	         	$postCode = '';
 	         	if (isset($_SESSION['ID'])){
 	         		$sum = 0;
 	         		$resProductInBasket = getProductInBasket($_SESSION['ID'], 2);
@@ -46,12 +49,49 @@
 		         			<td id="price">'.$price.' лв.</tr>';			         	
 		         		} 
 	         		}
+	         		
+	         		$address = getAddress($_SESSION['ID']);
+	         		if ($address){
+	         			$street = $address['street_address'];
+	         			$city = $address['city'];
+	         			$postCode = $address['post_code'];
+	         		}
 	         	}
-	         			
+	         	if (isset($_POST['order']))	{
+	         		$addressStreet = trim($_POST['street']);
+	         		$addressCity = trim($_POST['city']);
+	         		$addressPostCode = trim($_POST['post-code']);
+	         		if (empty($addressStreet) && empty($addressCity) && empty($addressPostCode)){
+	         			echo "Моля попълнете всички полета!";
+	         		}else{
+		         		$addressStreet = htmlentities($addressStreet);
+		         		$addressCity = htmlentities($addressCity);
+		         		$addressPostCode = htmlentities($addressPostCode);
+		         		
+		         		$result = addOrder($_SESSION['ID'], $addressStreet, $addressCity, $addressPostCode);
+		         		
+		         		if ($result){
+		         			echo "Поръчката ви е направена!";
+		         		}
+	         		}
+	         	}
 	         	?> 	
 	         		</tbody>
 	         	</table>
+	         	<form action="" method="post" id = 'orderForm'>
+	         	<h2>Адрес</h2>
+	         	<label>Улица</label>
+	         	<input type="text" name='street' value='<?= $street ?>'/>
+	         	
+	         	<label>Град</label>
+	         	<input type="text" name='city' value='<?= $city ?>'/>
+	         	
+	         	<label>Пощенски код</label>
+	         	<input type="text" name='post-code' value='<?= $postCode ?>'/>
+	         	
+	         	<input type="submit" name='order' value = 'Поръчай'/>
          	</form>
+         	</div> 
         </div>
       </div>
       <div class="sidebar">

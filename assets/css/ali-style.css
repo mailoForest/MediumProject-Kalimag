@@ -755,10 +755,10 @@ body{
  	font-size: 0.8em;
  }
  
- #form-basket table th {
+ #form-basket table {
 	display: inline-block;
 	padding: 1em;
-	width: 15%;
+	width: 85%;
  }
  .mainbar-minicategory {
   background-color: white;
@@ -807,4 +807,7 @@ body{
 .specValue {
 	color: black;
 	margin-bottom: 1em;
+}
+#orderForm {
+	width: 100%;
 }

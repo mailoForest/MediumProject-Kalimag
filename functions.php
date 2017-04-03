@@ -137,7 +137,7 @@ function getAddress($userId){
 	try{
         $pstmt = $db->prepare(GET_USER_ADDRESS);
         $pstmt->execute(array($userId));
-        return $res = $pstmt ->fetchAll(PDO::FETCH_ASSOC);
+        return $res = $pstmt ->fetch(PDO::FETCH_ASSOC);
     }catch (PDOException $e) {
         throw new Exception('Bad user ID provided!');
     }
@@ -145,7 +145,7 @@ function getAddress($userId){
 function checkIfAddressExists ($street, $city, $postCode) {
     $db = getConnection();
     try{
-        $pstmt = $db->prepare('SELECT id FROM addresses WHERE street_address = ? and city = ? and post_code = ?');
+        $pstmt = $db->prepare('SELECT id FROM addresses WHERE street_address = ? and city = ? and post_code = ?');	
         $pstmt->execute(array($street, $city, $postCode));
         return $res = $pstmt->fetchColumn(0);
     } catch (PDOException $e) {
@@ -177,15 +177,15 @@ function updateUserAddress($userId, $street, $city, $postCode){
         throw new Exception('Bad user street, city or post code  provided!');
     }
 }
-function addOrder($userId, $street, $city, $postCode, $changeAddress = false){
+function addOrder($userId, $street, $city, $postCode){
     $userAddress = getAddress($userId);
 
     if (!$userAddress){
         updateUserAddress($userId, $street, $city, $postCode);
-    } else if ($changeAddress === true){
+    } else {
         updateUserAddress($userId, $street, $city, $postCode);
     }
-    $userAddress = getAddress($userId)[0]['address_id'];
+    $userAddress = getAddress($userId)['address_id'];
     $db = getConnection();
     try{
         $db->beginTransaction();
@@ -210,5 +210,5 @@ function addOrder($userId, $street, $city, $postCode, $changeAddress = false){
         throw new Exception('Bad user ID provided!');
     }
 }
-addOrder('5', '22 ave', 'elin pelin', '55', true);
+
 ?>
