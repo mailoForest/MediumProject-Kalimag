@@ -408,7 +408,7 @@ body{
 	margin-bottom: 1em;
 	box-sizing: border-box;
 }
-.subscribe form input[type=submit]{
+.subscribe form input[type=submit], .minicategory-products button{
 	padding: 0.5em;
 	background: blue;
 	color: white;
@@ -754,3 +754,57 @@ body{
  	font-style: italic;
  	font-size: 0.8em;
  }
+ 
+ #form-basket table th {
+	display: inline-block;
+	padding: 1em;
+	width: 15%;
+ }
+ .mainbar-minicategory {
+  background-color: white;
+  border: 1px solid blue;
+  display: inline-block;
+  width: 100%;
+  padding: 1em;
+ }
+.minicategory-products {
+ 	float: left;
+ 	width: 25%;
+ 	padding: 1em;
+ 	box-sizing: border-box;
+ 	line-height: 1.1em;
+ 	display: inline-block;
+ }
+.minicategory-products img{
+  	width: 100%;
+  } 
+.minicategory-products p{
+  	text-align: none;
+  	text-align: center;
+  	font-size: 0.9em;
+  	height: 100px;
+  }
+#title h1 {
+	font-size: 1.8em;
+	color: #004080;
+	margin-bottom: 1em;
+}
+.title-product {
+	float: left;
+	width: 60%
+}
+.specifications {
+	clear: left;
+	width: 100%;
+	line-height: 1.5em;
+}
+.info-product { 
+	height: 500px;
+	line-height: 1.5em;
+	padding-top: 15em;
+	box-sizing: border-box;
+}
+.specValue {
+	color: black;
+	margin-bottom: 1em;
+}

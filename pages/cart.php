@@ -14,7 +14,7 @@
     <div class="content_resize">
       <div class="mainbar">
         <div class="article-basket">
-	        <form action="" method="post" id='form-basket'>
+	        <form action="order.php" method="post" id='form-basket'>
 	         	<?php
 	         	if (isset($_SESSION['ID'])){
 	         		$sum = 0;

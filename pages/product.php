@@ -90,6 +90,7 @@ if (isset($_GET['id'])){
     <div class="content">
         <div class="content_resize">
             <div class="mainbar">
+            <section class = 'mainbar-minicategory'>
                 <?php
                 $decideIfShouldBeAddedToCart = '';
                 $productTitle = "$productName $manufacturerName $model";
@@ -103,26 +104,27 @@ if (isset($_GET['id'])){
 
                 $productsPicturesPath = '../assets/images/products';
 
-                echo "<section id='title'>$productTitle</section>
+                echo "<section id='title'><h1>$productTitle</h1></section>
 
                       <section id='present'>
-                        <article><img src='$productsPicturesPath/$picture' alt=''></article>
-                        <article>
+                        <article class = title-product><img src='$productsPicturesPath/$picture' alt=''></article>
+                        <article class = 'info-product'>
                             <div>$price лв.</div>
                             <div>$isAvailable</div>
                             <div>$warranty</div>
                             <div><button onclick=\"$decideIfShouldBeAddedToCart\">Добави в количката</button></div>
                         </article>
                       </section>
-                      <section id='specifications'>";
+                      <section id='specifications'><table>";
                 foreach ($specifications as $specification){
                     $specificationName = $specification[1];
                     $specificationValue = $specification[2];
 
-                    echo "<div class='specRow'><div class='specName'>$specificationName</div><div class='specValue'>$specificationValue</div></div>";
+                    echo "<tr class='specRow'><td class='specName'>$specificationName</td><td class='specValue'>$specificationValue</td></tr>";
                 }
-                     echo '</section>';
+                     echo '</table></section>';
                 ?>
+                </section>
             </div>
             <div class="sidebar">
                 <div class="search">

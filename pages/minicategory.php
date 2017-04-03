@@ -61,6 +61,7 @@ if (isset($_GET['name'])){
     <div class="content">
         <div class="content_resize">
             <div class="mainbar">
+            <section class = 'mainbar-minicategory'>
                 <?php
                 $decideIfShouldBeAddedToCart = '';
 
@@ -80,14 +81,15 @@ if (isset($_GET['name'])){
                     }
 
                     echo "
-<article>
+<article class = 'minicategory-products'>
     <a href='product.php?id=$productId'>
-        <article><img width='100em' src='$productsPicturesPath/$imageName' alt=''>$title <br>$price лв.</article>
+        <article><img width='100em' src='$productsPicturesPath/$imageName' alt=''><p>$title $price лв.</p></article>
     </a>
     <button onclick=\"$decideIfShouldBeAddedToCart\">Добави в кошницата</button>
 </article>";
                 }
                 ?>
+                </section>
             </div>
             <div class="sidebar">
                 <div class="search">
