@@ -1,3 +1,10 @@
+<?php 
+session_start();
+require_once '../functions.php';
+if(!isset($_SESSION['ID'])){
+	goHome();
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,8 +15,10 @@
 <div class="main">
     <?php
         include '../header.php';
-    	require_once '../functions.php';
-    	$linkProfilPic = "../assets/images/profil_pic.jpg";
+    	$linkProfilPic = "profil_pic.jpg";
+        if (isset($_SESSION['picture'])){
+        	$linkProfilPic = $_SESSION['picture'];
+        }
 		if (isset($_POST['change'])){
 			changePersonalData();
 		}
@@ -27,8 +36,8 @@
     			<div id="personalData">
 	    			<h3>Моите данни</h3>
 	    			<form enctype='multipart/form-data' action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
-	    				<div id='img'>
-	    					<img src='<?=$linkProfilPic?>' alt="" />
+	    				<div id='profilePicture'>
+	    					<img src='../profilePicture/<?=$linkProfilPic?>' alt="" />
 	    					<input name="profilePic" type="file" accept="image/*" />
 							<input type='hidden' name='MAX_FILE_SIZE' value='8000000' />
 	    				</div>

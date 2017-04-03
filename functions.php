@@ -23,7 +23,10 @@ define ('GET_ALL_PRODUCT_IN_BASKET',
 define ('GET_SUM_PRODUCTS', 'SELECT SUM(b.quantity*p.price) FROM baskets b JOIN products p
 		ON (b.product_id=p.id)
 		WHERE b.users_id = ?');
-// define ('ORDER_PRODUCTS', )
+
+function goHome(){
+	header('Location: ./', true, 302);
+}
 function getConnection(){
 	try {
 		$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
@@ -41,16 +44,17 @@ function changePersonalData(){
 	$phone = trim(($_POST['phone']));
 	if(is_numeric($phone) && !empty($name) && !empty($surname)){
 	
-		$id=$_SESSION['ID'];	
+		$id = $_SESSION['ID'];	
 		try {
 			$db = getConnection();
 			
 			if (isset($_FILES['profilePic'])) {
 				$fileOnServerName = $_FILES['profilePic']['tmp_name'];
-				$fileOriginalName = $_FILES['profilePic']['name'];
 				if (is_uploaded_file($fileOnServerName)) {
-					if (move_uploaded_file($fileOnServerName,'../assets/images/profil-picture/'.$id.".jpg")) {
-						$linkProfilPic = 'assets/images/profil-picture/'.$id.".jpg";
+					$pictureName = sha1($id) . ".jpg";
+					if (move_uploaded_file($fileOnServerName,'../profilePicture/' . $pictureName)) {
+						$pstmt = $db->prepare("UPDATE users SET picture = ? where id = ?;");
+						$pstmt->execute(array($pictureName, $id));
 					}
 				}
 			}

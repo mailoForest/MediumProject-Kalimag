@@ -3,6 +3,11 @@ function register(){
 	$email = trim($_POST['email']);
 	$password = trim($_POST['reg-password']);
 	$passChek = trim($_POST['repeatPass']);
+	
+	$email = htmlentities($email);
+	$password = htmlentities($password);
+	$passChek = htmlentities($passChek);
+	
 	if ($email !=='' && $password !=='' && $passChek !==''){
 		if (strcmp($password, $passChek)===0){
             if (!defined('DB_HOST')){
@@ -22,17 +27,9 @@ function register(){
 				$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
 				$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 					
-				$result = $db->exec( "INSERT INTO users VALUE(0,'$email', '$password','', '','','');" );
+				$pstmt = $db->prepare( "INSERT INTO users(email, password) VALUE(?,?);" );
+				$pstmt->execute(array($email, $password));
 
-				// 				if($result){
-				// 					$res = $db->query ( "SELECT * FROM users WHERE (Email = '$email') AND (Password = '$password');" );
-				// 					$user = $res->fetch ( PDO::FETCH_ASSOC);
-					
-				// 					$_SESSION['ID'] = $user['ID'];
-				// 					$_SESSION['email'] = $user['Email'];
-
-				// 					header('Location: ../pages/account.php', true, 302);
-				// 				}
 			} catch ( PDOException $e ) {
 				echo "{error : " . $e->getMessage () . "}";
 				http_response_code ( 500 );

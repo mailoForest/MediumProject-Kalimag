@@ -26,9 +26,9 @@ if (isset($_POST['login'])){
 			$db = new PDO ("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
 			$db->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 				
-			$result = $db->query ("SELECT * FROM users WHERE (email = '$email') AND (password = '$password');" );
-		
-			$user = $result->fetch (PDO::FETCH_ASSOC);
+			$pstmt = $db->prepare("SELECT * FROM users WHERE (email = ?) AND (password = ?);" );
+			$pstmt->execute(array($email, $password));
+			$user = $pstmt->fetch (PDO::FETCH_ASSOC);
 		} catch ( PDOException $e ) {
 			echo "{error : " . $e->getMessage () . "}";
 			http_response_code ( 500 );
@@ -41,6 +41,7 @@ if (isset($_POST['login'])){
 			$_SESSION['email'] = $user['email'];
 			$_SESSION['phone'] = $user['phone'];
 			$_SESSION['pass'] = $user['password'];
+			$_SESSION['picture'] = $user['picture'];
 		} else {
             $check = 'Невалиден имейл или парола';
         }

@@ -15,7 +15,7 @@ if (!defined('DB_PASS')){
 define ( 'CHECK_EMAIL', 'SELECT id FROM users WHERE email = ?;');
 define ( 'CHECK_PASSWORD', 'SELECT password FROM users WHERE password = ? AND email = ?;');
 define ('DLETE_PRODUCT_FROM_CARTS', 'DELETE FROM baskets WHERE users_id = ? AND product_id = ?;');
-
+define ('UPDATE_PRODUCT_QUANTITY', 'UPDATE baskets SET quantity = ? WHERE users_id = ? and product_id = ?;');
 
 
 function getConnection(){
@@ -29,6 +29,19 @@ function getConnection(){
 	}
 };
 
+function updateProductQuantity ($quantity, $userId, $productId){
+	$db = getConnection();
+	if (is_numeric($quantity) && $quantity <= 0){
+		echo 'Невалидно количество';
+		return;
+	}
+	try{
+		$pstmt = $db->prepare(UPDATE_PRODUCT_QUANTITY);
+		return $pstmt->execute(array($quantity, $userId, $productId));
+	}catch (PDOException $e) {
+		throw new Exception('Bad user ID provided!');
+	}
+}
 function checkEmail($email){
 	$db = getConnection();
 	$pstmt = $db ->prepare(CHECK_EMAIL);
@@ -105,7 +118,21 @@ if (isset($_GET['remove'])){
 	$userId = $_SESSION['ID'];
 	try {
 		$result = removeProduct($userId, $productId);
-		echo getAllSumProducts($userId);
+		echo round(getAllSumProducts($userId)+0,2);
+	} catch ( PDOException $e ) {
+		echo "{error : " . $e->getMessage () . "}";
+		http_response_code ( 500 );
+	}
+}
+
+if (isset($_GET['update'])){
+	session_start();
+	$productId = $_GET['update'];
+	$userId = $_SESSION['ID'];
+	$quantity = $_GET['quantity'];
+	try {
+		$result = updateProductQuantity ($quantity, $userId, $productId);
+		echo round(getAllSumProducts($userId)+0,2);
 	} catch ( PDOException $e ) {
 		echo "{error : " . $e->getMessage () . "}";
 		http_response_code ( 500 );
