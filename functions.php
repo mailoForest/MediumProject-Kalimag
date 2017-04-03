@@ -20,9 +20,12 @@ define ('GET_ALL_PRODUCT_IN_BASKET',
 			ON (b.product_id = p.id)
 			JOIN manufacturers m ON (p.manufacturer_id=m.id) 
 			WHERE b.users_id = ? AND ? < p.quantity");
+
 define ('GET_SUM_PRODUCTS', 'SELECT SUM(b.quantity*p.price) FROM baskets b JOIN products p
 		ON (b.product_id=p.id)
 		WHERE b.users_id = ?');
+
+define('GET_USER_ADDRESS', 'SELECT u.address_id, u.id AS "user_id", a.street_address, a.city, a.post_code FROM addresses a JOIN users u ON (a.id = u.address_id) where u.id = ?;');
 
 function goHome(){
 	header('Location: ./', true, 302);
@@ -127,6 +130,85 @@ function getAllSumProducts($userId){
 		$pstmt = $db->prepare(GET_SUM_PRODUCTS);
 		$pstmt->execute(array($userId));
 		return $res = $pstmt->fetch(PDO::FETCH_COLUMN);
-
 }
+
+function getAddress($userId){
+    $db = getConnection();
+	try{
+        $pstmt = $db->prepare(GET_USER_ADDRESS);
+        $pstmt->execute(array($userId));
+        return $res = $pstmt ->fetchAll(PDO::FETCH_ASSOC);
+    }catch (PDOException $e) {
+        throw new Exception('Bad user ID provided!');
+    }
+}
+function checkIfAddressExists ($street, $city, $postCode) {
+    $db = getConnection();
+    try{
+        $pstmt = $db->prepare('SELECT id FROM addresses WHERE street_address = ? and city = ? and post_code = ?');
+        $pstmt->execute(array($street, $city, $postCode));
+        return $res = $pstmt->fetchColumn(0);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+function insertAddress($street, $city, $postCode){
+    $db = getConnection();
+    try{
+        $addressId = checkIfAddressExists ($street, $city, $postCode);
+
+        if ($addressId === false){
+            $pstmt = $db->prepare('INSERT INTO addresses() VALUES (NULL, ?, ?, ?)');
+            $pstmt->execute(array($street, $city, $postCode));
+            $addressId = checkIfAddressExists ($street, $city, $postCode);
+        }
+        return $addressId;
+    } catch (PDOException $e) {
+        throw new Exception('Bad user street, city or post code  provided!');
+    }
+}
+function updateUserAddress($userId, $street, $city, $postCode){
+    $db = getConnection();
+    $addressId = insertAddress($street, $city, $postCode);
+    try{
+        $pstmt = $db->prepare('UPDATE users SET address_id = ? where id = ?');
+        $pstmt->execute(array($addressId, $userId));
+    } catch (PDOException $e) {
+        throw new Exception('Bad user street, city or post code  provided!');
+    }
+}
+function addOrder($userId, $street, $city, $postCode, $changeAddress = false){
+    $userAddress = getAddress($userId);
+
+    if (!$userAddress){
+        updateUserAddress($userId, $street, $city, $postCode);
+    } else if ($changeAddress === true){
+        updateUserAddress($userId, $street, $city, $postCode);
+    }
+    $userAddress = getAddress($userId)[0]['address_id'];
+    $db = getConnection();
+    try{
+        $db->beginTransaction();
+
+        $pstmt = $db->prepare('SELECT * FROM baskets WHERE users_id = ?');
+        $pstmt->execute(array($userId));
+
+        $prepareInsertingOrders = $db->prepare('INSERT INTO orders VALUES (null, CURDATE(),?, ?, ?, ?);');
+
+        while ($res = $pstmt->fetch(PDO::FETCH_ASSOC)) {
+            $productId = $res['product_id'];
+            $quantity = $res['quantity'];
+            $prepareInsertingOrders->execute([$userId, $userAddress, $productId, $quantity]);
+        }
+
+        $pstmt = $db->prepare('DELETE FROM baskets WHERE users_id = ?');
+        $pstmt->execute(array($userId));
+
+        $db->commit();
+    }catch (PDOException $e) {
+        echo $e->getMessage(), $e->getLine();
+        throw new Exception('Bad user ID provided!');
+    }
+}
+addOrder('5', '22 ave', 'elin pelin', '55', true);
 ?>

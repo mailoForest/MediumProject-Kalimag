@@ -5,6 +5,7 @@
  * Date: 2.4.2017 г.
  * Time: 18:47
  */
+
 if (isset($_GET['userId']) && isset($_GET['productId'])){
     $userId = $_GET['userId'];
     $userId = htmlentities(trim($userId));
