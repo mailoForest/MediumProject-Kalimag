@@ -2,6 +2,11 @@
 <head>
 <title>KALImag | Contact</title>
     <?php include '../head-links.php';?>
+    <style>
+        tr td, tr th{
+            padding: 0.5em;
+        }
+    </style>
 </head>
 <body>
 <div class="main">
@@ -15,11 +20,11 @@
       <div class="mainbar">
         <div class="article-basket">
 	       <div  id='form-basket'>
-	        <h2>данни за поръчката:</h2>
+	        <h2>Данни за поръчката:</h2>
 	        	<table>
 	        		<thead>
 	        			<tr>
-	        				<th>Продукт</th>
+	        				<th>Име</th>
 	        				<th>Продукт</th>
 	        				<th>Модел</th>
 	        				<th>Количество</th>
@@ -39,13 +44,13 @@
 		         			$title = $resProductInBasket[$row]['manufacturers'];
 		         			$model = $resProductInBasket[$row]['model'];
 		         			$price = $resProductInBasket[$row]['price'];
-		         			$quantite =  $resProductInBasket[$row]['quantity'];
+		         			$quantity =  $resProductInBasket[$row]['quantity'];
 		         			$productName = $resProductInBasket[$row]['name'];
 			         		echo '<tr>
 	         				<td>'.$productName.'</td>	
 			         		<td>'.$title.'</td>	
 	         				<td>'.$model.'</td>
-	         				<td id="price">'.$quantite.' бр.</td>	
+	         				<td id="price">'.$quantity.' бр.</td>	
 		         			<td id="price">'.$price.' лв.</tr>';			         	
 		         		} 
 	         		}
@@ -57,10 +62,12 @@
 	         			$postCode = $address['post_code'];
 	         		}
 	         	}
-	         	if (isset($_POST['order']))	{
+	         	if (isset($_POST['order']) && isset($_POST['street']) && isset($_POST['city']) && isset($_POST['post-code'])) {
+
 	         		$addressStreet = trim($_POST['street']);
 	         		$addressCity = trim($_POST['city']);
 	         		$addressPostCode = trim($_POST['post-code']);
+
 	         		if (empty($addressStreet) && empty($addressCity) && empty($addressPostCode)){
 	         			echo "Моля попълнете всички полета!";
 	         		}else{
@@ -79,17 +86,13 @@
 	         		</tbody>
 	         	</table>
 	         	<form action="" method="post" id = 'orderForm'>
-	         	<h2>Адрес</h2>
-	         	<label>Улица</label>
-	         	<input type="text" name='street' value='<?= $street ?>'/>
-	         	
-	         	<label>Град</label>
-	         	<input type="text" name='city' value='<?= $city ?>'/>
-	         	
-	         	<label>Пощенски код</label>
-	         	<input type="text" name='post-code' value='<?= $postCode ?>'/>
-	         	
-	         	<input type="submit" name='order' value = 'Поръчай'/>
+                    <table>
+	         	<caption><h2>Адрес</h2></caption>
+	         	<tr><th><label>Улица</label></th><td><input type="text" name='street' value='<?= $street ?>'/></td></tr>
+	         	<tr><th><label>Град</label></th><td><input type="text" name='city' value='<?= $city ?>'/></td></tr>
+                <tr><th><label>Пощенски код</label></th><td><input type="text" name='post-code' value='<?= $postCode ?>'/></td></tr>
+                    </table>
+                    <input type="submit" name='order' value = 'Поръчай'/>
          	</form>
          	</div> 
         </div>
