@@ -1,24 +1,12 @@
 <?php
-if (!defined('DB_HOST')){
-    define ( 'DB_HOST', 'localhost' );
-}
-if (!defined('DB_NAME')){
-    define ( 'DB_NAME', 'kalimag' );
-}
-if (!defined('DB_USER')){
-    define ( 'DB_USER', 'root' );
-}
-if (!defined('DB_PASS')){
-    define ( 'DB_PASS', '' );
-}
-
+require_once 'db.php';
 define ( 'CHECK_EMAIL', 'SELECT id FROM users WHERE email = ?;');
 define ( 'CHECK_PASSWORD', 'SELECT password FROM users WHERE password = ? AND email = ?;');
 define ('DLETE_PRODUCT_FROM_CARTS', 'DELETE FROM baskets WHERE users_id = ? AND product_id = ?;');
 define ('UPDATE_PRODUCT_QUANTITY', 'UPDATE baskets SET quantity = ? WHERE users_id = ? and product_id = ?;');
 
 
-function getConnection(){
+function getConnection() {
 	try {
 		$db = new PDO ( "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
 		$db->setAttribute ( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -29,9 +17,9 @@ function getConnection(){
 	}
 };
 
-function updateProductQuantity ($quantity, $userId, $productId){
+function updateProductQuantity ($quantity, $userId, $productId) {
 	$db = getConnection();
-	if (is_numeric($quantity) && $quantity <= 0){
+	if (is_numeric($quantity) && $quantity <= 0) {
 		echo 'Невалидно количество';
 		return;
 	}
@@ -42,21 +30,21 @@ function updateProductQuantity ($quantity, $userId, $productId){
 		throw new Exception('Bad user ID provided!');
 	}
 }
-function checkEmail($email){
+function checkEmail($email) {
 	$db = getConnection();
 	$pstmt = $db ->prepare(CHECK_EMAIL);
 	$pstmt -> execute(array($email));
 	return $res = $pstmt -> fetch(PDO::FETCH_COLUMN);
 };
 
-function checkPass($pass, $email){
+function checkPass($pass, $email) {
 	$db = getConnection();
 	$pstmt = $db ->prepare(CHECK_PASSWORD);
 	$pstmt -> execute(array($pass, $email));
 	return $res = $pstmt -> fetch(PDO::FETCH_COLUMN);
 }
 
-function removeProduct($userId, $productId){
+function removeProduct($userId, $productId) {
 	$db = getConnection();
 	try{
 		$pstmt = $db->prepare(DLETE_PRODUCT_FROM_CARTS);
@@ -66,7 +54,7 @@ function removeProduct($userId, $productId){
 	}
 }
 
-function getAllSumProducts($userId){
+function getAllSumProducts($userId) {
 	$db = getConnection();
 	$pstmt = $db->prepare('SELECT SUM(b.quantity*p.price) FROM baskets b JOIN products p
 		ON (b.product_id=p.id)
@@ -76,12 +64,12 @@ function getAllSumProducts($userId){
 
 }
 
-if (isset($_POST['newEmail'])){
+if (isset($_POST['newEmail'])) {
 	$email = trim(($_POST['newEmail']));
-	if ($email!==''){	
+	if ($email!=='') {	
 		try {
 			$user = checkEmail($email);
-			if($user){
+			if($user) {
 				echo 1;
 			} else {
 				echo 0;
@@ -94,13 +82,13 @@ if (isset($_POST['newEmail'])){
 	}
 }
 
-if (isset($_REQUEST['password'])){
+if (isset($_REQUEST['password'])) {
 	$pass = trim($_REQUEST['password']);
 	$email = trim(($_REQUEST['email']));
 	
 	try {
 		$user = checkPass($pass, $email);
-		if($user){
+		if($user) {
 			echo 1;
 		} else {
 			echo 0;
@@ -112,7 +100,7 @@ if (isset($_REQUEST['password'])){
 	}
 }
 
-if (isset($_GET['remove'])){
+if (isset($_GET['remove'])) {
 	session_start();
 	$productId = $_GET['remove'];
 	$userId = $_SESSION['ID'];
@@ -125,7 +113,7 @@ if (isset($_GET['remove'])){
 	}
 }
 
-if (isset($_GET['update'])){
+if (isset($_GET['update'])) {
 	session_start();
 	$productId = $_GET['update'];
 	$userId = $_SESSION['ID'];

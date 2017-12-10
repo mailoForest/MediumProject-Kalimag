@@ -1,16 +1,5 @@
 <?php
-if (!defined('DB_HOST')){
-    define ( 'DB_HOST', 'localhost' );
-}
-if (!defined('DB_NAME')){
-    define ( 'DB_NAME', 'kalimag' );
-}
-if (!defined('DB_USER')){
-    define ( 'DB_USER', 'root' );
-}
-if (!defined('DB_PASS')){
-    define ( 'DB_PASS', '' );
-}
+require_once '../db.php';
 
 $data = [];
 
@@ -40,7 +29,6 @@ if (isset($_GET['name'])){
                 }
             }
         }
-
     } catch (PDOException $exception){
         $message = $exception->getMessage();
         echo "<script>alert($message)</script>";
@@ -48,15 +36,7 @@ if (isset($_GET['name'])){
 }
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>KALImag</title>
-    <?php include '../head-links.php'?>
-</head>
-<body>
-<div class="main">
-    <?php include '../header.php'?>
+<?php include '../header.php'?>
     <div class="clr"></div>
     <div class="content">
         <div class="content_resize">
@@ -80,12 +60,9 @@ if (isset($_GET['name'])){
             <div class="clr"></div>
         </div>
     </div>
-    <?php include '../footer.php'?>
     <script type="text/javascript" src="../assets/js/script.js"></script>
     <script  type="text/javascript">
         setClassActive('index.php');
         window.onscroll = function(){showGoTop()};
     </script>
-</div>
-</body>
-</html>
+<?php include '../footer.php'?>

@@ -1,31 +1,20 @@
 <?php
 $check = '';
 $user = [];
-if (isset($_POST['login'])){
+if (isset($_POST['login'])) {
 	$email = trim($_POST['email']);
 	$password = trim($_POST['password']);
 
 	$email = htmlentities($email);
-    $password = htmlentities($password);
+	$password = htmlentities($password);
 
-    if ($email !== '' && $password !== ''){
-        if (!defined('DB_HOST')){
-            define ( 'DB_HOST', 'localhost' );
-        }
-        if (!defined('DB_NAME')){
-            define ( 'DB_NAME', 'kalimag' );
-        }
-        if (!defined('DB_USER')){
-            define ( 'DB_USER', 'root' );
-        }
-        if (!defined('DB_PASS')){
-            define ( 'DB_PASS', '' );
-        }
+	if ($email !== '' && $password !== '') {
+		require_once 'db.php';
 
-        try {
+		try {
 			$db = new PDO ("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ';charset=utf8', DB_USER, DB_PASS );
 			$db->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-				
+
 			$pstmt = $db->prepare("SELECT * FROM users WHERE (email = ?) AND (password = ?);" );
 			$pstmt->execute(array($email, $password));
 			$user = $pstmt->fetch (PDO::FETCH_ASSOC);
@@ -34,7 +23,7 @@ if (isset($_POST['login'])){
 			http_response_code ( 500 );
 		}
 
-		if ($user){
+		if ($user) {
 			$_SESSION['ID'] = $user['id'];
 			$_SESSION['name'] = $user['name'];
 			$_SESSION['surname'] = $user['surname'];
@@ -43,16 +32,16 @@ if (isset($_POST['login'])){
 			$_SESSION['pass'] = $user['password'];
 			$_SESSION['picture'] = $user['picture'];
 		} else {
-            $check = 'Невалиден имейл или парола';
-        }
+			$check = 'Невалиден имейл или парола';
+		}
 	}
 }
 ?>
 <div id="login-wrapper">
-    <main class="log-window">
-        <section class="form">
-            <div class="fa-times-pos"><span class="fa fa-times" onclick="hideLogBar()"></span></div>
-          		<form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+	<main class="log-window">
+		<section class="form">
+			<div class="fa-times-pos"><span class="fa fa-times" onclick="hideLogBar()"></span></div>
+				<form action="<?php $_SERVER['PHP_SELF']?>" method="post">
 					<h1>Здравейте!</h1>
 					<p><strong>Моля въведете имейл адрес и парола</strong></p>
 					<div id="mail">
@@ -80,6 +69,6 @@ if (isset($_POST['login'])){
 						<a href="https://accounts.google.com/ServiceLogin?passive=1209600&continue=https://accounts.google.com/o/oauth2/auth?response_type%3Dcode%26client_id%3D878064229905-ge1qoto079l7jhmfl99rvcl9ucop2van.apps.googleusercontent.com%26redirect_uri%3Dhttp://www.emag.bg/user/googleauth%26scope%3Dhttps://www.googleapis.com/auth/userinfo.email%2Bhttps://www.googleapis.com/auth/userinfo.profile%26state%3D453582957a270e1b4aa8933439985a70%26from_login%3D1%26as%3D-e384eeebaffea27&oauth=1&sarp=1&scc=1#identifier" target="blank"><img alt="" src="../assets/images/google-sign-in.png"></a>
 					</article>
 				</form>
-        </section>
-    </main>
+		</section>
+	</main>
 </div>
